@@ -1,0 +1,16 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark background -->
+  <rect width="800" height="400" fill="#030712" />
+  
+  <!-- Logo Group -->
+  <g transform="translate(100, 100) scale(2)">
+    <path d="M20 50C20 33.4315 33.4315 20 50 20C66.5685 20 80 33.4315 80 50C80 66.5685 66.5685 80 50 80" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
+    <circle cx="50" cy="50" r="10" fill="#10b981" />
+    <path d="M50 20V10M80 50H90M50 80V90M20 50H10" stroke="#10b981" stroke-width="2" stroke-linecap="round" opacity="0.5" />
+    <path d="M50 50L75 25" stroke="#10b981" stroke-width="2" stroke-dasharray="4 4" />
+    <circle cx="75" cy="25" r="4" fill="#ffffff" />
+  </g>
+  
+  <!-- Text -->
+  <text x="340" y="225" font-family="system-ui, -apple-system, sans-serif" font-size="80" font-weight="800" fill="#f8fafc" letter-spacing="-0.03em">Think<tspan fill="#10b981">Agentic</tspan></text>
+</svg>

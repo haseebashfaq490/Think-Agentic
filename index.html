@@ -1,0 +1,3050 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=980" />
+    <title>Think Agentic | Agentic Intelligence & Autonomous Systems</title>
+    <meta name="description" content="Think Agentic builds autonomous AI agents and enterprise automation systems that think, reason, and act.">
+    <meta property="og:title" content="Think Agentic | Agentic Intelligence">
+    <meta property="og:description" content="Engineering the agentic future for your business through autonomous, reasoning AI systems.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      :root {
+        --bg: #030712;
+        --bg-alt: #0f172a;
+        --accent: #10b981;
+        --accent-glow: rgba(16, 185, 129, 0.4);
+        --text-white: #f8fafc;
+        --text-gray: #94a3b8;
+        --border: rgba(16, 185, 129, 0.2);
+        --glass: rgba(15, 23, 42, 0.6);
+        --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+        --card-bg: rgba(30, 41, 59, 0.4);
+      }
+
+      @keyframes mesh-float {
+        0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+        33% { transform: translate(2%, 3%) rotate(2deg) scale(1.05); }
+        66% { transform: translate(-1%, 2%) rotate(-1deg) scale(0.98); }
+        100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+      }
+
+      @keyframes pulse-slow {
+        0%, 100% { opacity: 0.3; transform: scale(1); }
+        50% { opacity: 0.6; transform: scale(1.1); }
+      }
+
+      .dynamic-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        background: #030712;
+        overflow: hidden;
+      }
+
+      .mesh-gradient {
+        position: absolute;
+        width: 150%;
+        height: 150%;
+        top: -25%;
+        left: -25%;
+        background-image: 
+          radial-gradient(at 10% 10%, rgba(16, 185, 129, 0.15) 0, transparent 40%), 
+          radial-gradient(at 90% 10%, rgba(139, 92, 246, 0.1) 0, transparent 40%),
+          radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.05) 0, transparent 60%),
+          radial-gradient(at 10% 90%, rgba(139, 92, 246, 0.1) 0, transparent 40%),
+          radial-gradient(at 90% 90%, rgba(16, 185, 129, 0.15) 0, transparent 40%);
+        filter: blur(80px);
+        animation: mesh-float 30s infinite ease-in-out;
+      }
+
+      .noise-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.03;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      }
+
+      .grid-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          linear-gradient(rgba(16, 185, 129, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+        background-size: 60px 60px;
+        mask-image: radial-gradient(circle at 50% 50%, black, transparent 90%);
+        opacity: 0.4;
+      }
+
+      .floating-nodes {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .node {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: var(--accent);
+        border-radius: 50%;
+        filter: blur(1px);
+        box-shadow: 0 0 10px var(--accent);
+        animation: pulse-slow 4s infinite ease-in-out;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text-white);
+        font-family: var(--font-sans);
+        line-height: 1.6;
+        overflow-x: auto;
+        -webkit-font-smoothing: antialiased;
+        min-width: 1400px;
+        zoom: 0.85;
+      }
+
+      /* Scroll Progress Bar */
+      #progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: var(--accent);
+        z-index: 1000;
+        transition: width 0.1s ease;
+      }
+
+      /* Typography */
+      h1, h2, h3, h4 {
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+
+      p {
+        color: var(--text-gray);
+        font-size: 1.125rem;
+      }
+
+      .text-gradient {
+        background: linear-gradient(to right, #fff, #94a3b8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Layout */
+      .container {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      section {
+        padding: 4rem 0;
+        position: relative;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-width: 1400px;
+        z-index: 1000;
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+        background: linear-gradient(to bottom, rgba(15, 23, 42, 0.5), transparent);
+      }
+
+      nav.scrolled {
+        background: var(--glass);
+        backdrop-filter: blur(16px);
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Fullscreen Menu Styles */
+      .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        cursor: pointer;
+        z-index: 1000;
+        margin-right: 1.5rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+      .menu-toggle:hover {
+        background: rgba(16, 185, 129, 0.1);
+        border-color: var(--accent);
+        box-shadow: 0 0 15px var(--accent-glow);
+      }
+      .hamburger {
+        width: 20px;
+        height: 14px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .hamburger span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background: white;
+        border-radius: 2px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .menu-toggle.active .hamburger span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+        background: var(--accent);
+      }
+      .menu-toggle.active .hamburger span:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-toggle.active .hamburger span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+        background: var(--accent);
+      }
+
+      .side-drawer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 350px;
+        height: 100%;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(20px);
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 999;
+        transform: translateX(-100%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        padding: 120px 2rem 2rem;
+        box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
+      }
+      .side-drawer.active {
+        transform: translateX(0);
+      }
+      .drawer-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        z-index: 998;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+      }
+      .drawer-backdrop.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .drawer-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .drawer-link {
+        font-size: 2rem;
+        font-weight: 700;
+        color: white;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        transform: translateX(-20px);
+        opacity: 0;
+        padding: 0.5rem 0;
+        display: inline-block;
+        width: fit-content;
+      }
+      .side-drawer.active .drawer-link {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      .side-drawer.active .drawer-link:nth-child(1) { transition-delay: 0.1s; }
+      .side-drawer.active .drawer-link:nth-child(2) { transition-delay: 0.15s; }
+      .side-drawer.active .drawer-link:nth-child(3) { transition-delay: 0.2s; }
+      .side-drawer.active .drawer-link:nth-child(4) { transition-delay: 0.25s; }
+      .side-drawer.active .drawer-link:nth-child(5) { transition-delay: 0.3s; }
+      .side-drawer.active .drawer-link:nth-child(6) { transition-delay: 0.35s; }
+
+      .drawer-link:hover {
+        color: var(--accent);
+        transform: translateX(10px);
+      }
+      .drawer-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .drawer-link:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: var(--text-white);
+        text-decoration: none;
+      }
+
+      .logo-icon {
+        width: 24px;
+        height: 24px;
+        fill: var(--accent);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--text-white);
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        position: relative;
+        display: flex;
+        align-items: center;
+        line-height: 1;
+      }
+
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.3s ease;
+        box-shadow: 0 0 10px var(--accent-glow);
+      }
+
+      .nav-links a.btn::after {
+        display: none;
+      }
+
+      .nav-links a:hover {
+        color: var(--accent);
+        transform: translateY(-1px);
+      }
+
+      .nav-links a.btn:hover {
+        color: white;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .hover-glow:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent) !important;
+        box-shadow: 0 10px 30px -10px var(--accent-glow);
+        background: rgba(16, 185, 129, 0.05) !important;
+      }
+
+      .hover-glow {
+        backdrop-filter: blur(10px);
+      }
+
+      .trust-line {
+        perspective: 1000px;
+      }
+
+      #rotating-industry {
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        display: inline-block;
+        min-width: 220px;
+        text-align: center;
+        color: var(--accent);
+        font-weight: 800;
+        background: linear-gradient(90deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.2));
+        padding: 0.4rem 1.5rem;
+        border-radius: 99px;
+        backdrop-filter: blur(8px);
+        border: 1px solid var(--accent);
+        box-shadow: 0 0 15px var(--accent-glow);
+        position: relative;
+        overflow: hidden;
+        animation: industry-pulse 2s infinite ease-in-out;
+        transform-style: preserve-3d;
+      }
+
+      @keyframes industry-pulse {
+        0%, 100% { box-shadow: 0 0 15px var(--accent-glow); }
+        50% { box-shadow: 0 0 30px var(--accent-glow); }
+      }
+
+      #rotating-industry::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        animation: industry-glimmer 3s infinite;
+      }
+
+      @keyframes industry-glimmer {
+        0% { left: -100%; }
+        100% { left: 100%; }
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1.5rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        border: none;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+      }
+
+      .btn:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: white;
+        box-shadow: 0 0 20px var(--accent-glow);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 30px var(--accent-glow);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: white;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        padding-top: 8rem;
+        padding-bottom: 2rem;
+      }
+
+      .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: radial-gradient(circle at 50% 50%, #1e1e2e 0%, #0a0a0f 100%);
+      }
+
+      .hero-blob {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+        filter: blur(80px);
+        animation: float 20s infinite alternate;
+        z-index: -1;
+      }
+
+      @keyframes float {
+        0% { transform: translate(-10%, -10%) scale(1); }
+        100% { transform: translate(10%, 10%) scale(1.1); }
+      }
+
+      .hero-content {
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+      }
+
+      .hero h1 {
+        font-size: 3.75rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .hero .subheadline {
+        font-size: 1.25rem;
+        color: var(--accent);
+        margin-bottom: 1.25rem;
+        font-weight: 600;
+      }
+
+      .hero p {
+        margin-bottom: 2rem;
+        font-size: 1.125rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+        justify-content: center;
+      }
+
+      .trust-line {
+        font-size: 0.875rem;
+        color: var(--text-gray);
+        opacity: 0.6;
+      }
+
+      .hero-graphic {
+        position: absolute;
+        right: -5%;
+        top: 25%;
+        transform: translateY(-50%);
+        width: 45%;
+        opacity: 0.8;
+        z-index: 1;
+      }
+
+      /* Trusted By */
+      .trusted-by {
+        padding: 4rem 0;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .trusted-by p {
+        text-align: center;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        margin-bottom: 3rem;
+      }
+
+      .logo-grid {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 3rem;
+      }
+
+      .logo-item {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-gray);
+        opacity: 0.4;
+        transition: opacity 0.3s ease;
+      }
+
+      .logo-item:hover {
+        opacity: 0.8;
+      }
+
+      /* Features Grid */
+      .section-header {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 5rem;
+      }
+
+      .section-header h2 {
+        font-size: 2.75rem;
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        line-height: 1;
+        margin-bottom: 1.25rem;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .feature-card {
+        background: var(--card-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--border);
+        padding: 3rem;
+        border-radius: 2rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent);
+        box-shadow: 0 20px 40px -20px var(--accent-glow);
+      }
+
+      .feature-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(16, 185, 129, 0.1);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+        color: var(--accent);
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .feature-card:hover .feature-icon {
+        transform: scale(1.1) rotate(5deg);
+        background: var(--accent);
+        color: white;
+        box-shadow: 0 0 20px var(--accent-glow);
+      }
+
+      .feature-icon::after {
+        content: '';
+        position: absolute;
+        inset: -5px;
+        border-radius: 20px;
+        border: 1px solid var(--accent);
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover .feature-icon::after {
+        opacity: 0.5;
+        inset: -8px;
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Stats */
+      .stats-bar {
+        background: linear-gradient(135deg, #111827 0%, #0a0a0f 100%);
+        padding: 6rem 0;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4rem;
+        text-align: center;
+      }
+
+      .stat-item h4 {
+        font-size: 3.5rem;
+        color: var(--accent);
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-item p {
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      /* Demo Section */
+      .demo-container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        border-radius: 2rem;
+        overflow: hidden;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+      }
+
+      .chat-header {
+        padding: 1.5rem 2rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        background: #10b981;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #10b981;
+        animation: pulse-dot 2s infinite;
+      }
+
+      @keyframes pulse-dot {
+        0% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.5); opacity: 0.5; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+
+      .chat-body {
+        padding: 2.5rem;
+        height: 400px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .chat-bubble {
+        max-width: 80%;
+        padding: 1.25rem 1.5rem;
+        border-radius: 1.25rem;
+        font-size: 1rem;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+
+      .bubble-ai {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        align-self: flex-start;
+        border-bottom-left-radius: 0.25rem;
+      }
+
+      .chat-footer {
+        padding: 1.5rem 2rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-top: 1px solid var(--border);
+        display: flex;
+        gap: 1rem;
+      }
+
+      .chat-input {
+        flex: 1;
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--border);
+        border-radius: 9999px;
+        padding: 0.75rem 1.5rem;
+        color: white;
+        outline: none;
+      }
+
+      .chat-input:focus {
+        border-color: var(--accent);
+      }
+
+      /* Service Blocks */
+      .service-block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+        align-items: center;
+        margin-bottom: 10rem;
+      }
+
+      .service-block:nth-child(even) {
+        direction: rtl;
+      }
+
+      .service-block:nth-child(even) .service-content {
+        direction: ltr;
+      }
+
+      .service-content h3 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .service-list {
+        list-style: none;
+        margin-top: 2rem;
+      }
+
+      .service-list li {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        color: var(--text-gray);
+      }
+
+      .service-list i {
+        color: var(--accent);
+      }
+
+      .service-graphic {
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        border-radius: 2rem;
+        aspect-ratio: 4/3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        animation: float-graphic 6s infinite ease-in-out;
+      }
+
+      @keyframes float-graphic {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+      }
+
+      /* Process Section */
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        position: relative;
+      }
+
+      .process-grid::before {
+        content: '';
+        position: absolute;
+        top: 2.5rem;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: var(--border);
+        z-index: 0;
+      }
+
+      .process-step {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+      }
+
+      .step-number {
+        width: 5rem;
+        height: 5rem;
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid var(--accent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 2rem;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--accent);
+        transition: all 0.3s ease;
+      }
+
+      .process-step:hover .step-number {
+        border-color: var(--accent);
+        box-shadow: 0 0 20px var(--accent-glow);
+        transform: scale(1.1);
+      }
+
+      .process-step h4 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Agile Loop Animation */
+      .agile-loop-container {
+        margin-top: 3rem;
+        padding: 2rem;
+        background: var(--glass);
+        border: 1px solid var(--border);
+        border-radius: 3rem;
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 4rem;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .agile-visual {
+        position: relative;
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .agile-visual::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        animation: scan-line 4s linear infinite;
+        opacity: 0.3;
+        z-index: 1;
+      }
+
+      @keyframes scan-line {
+        0% { top: 0; }
+        100% { top: 100%; }
+      }
+
+      .loop-circle {
+        width: 200px;
+        height: 200px;
+        border: 2px dashed var(--accent);
+        border-radius: 50%;
+        position: relative;
+        animation: rotate-loop 20s linear infinite;
+      }
+
+      @keyframes rotate-loop {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      .loop-node {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background: var(--bg);
+        border: 1px solid var(--accent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 700;
+        box-shadow: 0 0 15px var(--accent-glow);
+        animation: pulse-node 3s infinite;
+      }
+
+      @keyframes pulse-node {
+        0% { box-shadow: 0 0 10px var(--accent-glow); }
+        50% { box-shadow: 0 0 25px var(--accent-glow); }
+        100% { box-shadow: 0 0 10px var(--accent-glow); }
+      }
+
+      .sprint-status {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid var(--accent);
+        padding: 0.5rem 1rem;
+        border-radius: 99px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--accent);
+        z-index: 5;
+      }
+
+      .sprint-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
+        border-radius: 50%;
+        animation: pulse-dot 1.5s infinite;
+      }
+
+      .node-1 { top: -20px; left: 50%; transform: translateX(-50%); }
+      .node-2 { right: -20px; top: 50%; transform: translateY(-50%); }
+      .node-3 { bottom: -20px; left: 50%; transform: translateX(-50%); }
+      .node-4 { left: -20px; top: 50%; transform: translateY(-50%); }
+
+      .v1-badge {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--accent);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 99px;
+        font-weight: 800;
+        font-size: 1.5rem;
+        box-shadow: 0 0 30px var(--accent-glow);
+        z-index: 2;
+        animation: pulse-v1 2s infinite;
+      }
+
+      @keyframes pulse-v1 {
+        0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 20px var(--accent-glow); }
+        50% { transform: translate(-50%, -50%) scale(1.05); box-shadow: 0 0 40px var(--accent-glow); }
+        100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 20px var(--accent-glow); }
+      }
+
+      @keyframes progress-glow {
+        0% { opacity: 0.8; }
+        50% { opacity: 1; filter: brightness(1.2); }
+        100% { opacity: 0.8; }
+      }
+
+      .agile-content h3 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .agile-features {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .agile-feature {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .agile-feature i {
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+
+      /* Pricing */
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .pricing-card {
+        background: var(--card-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--border);
+        padding: 1.5rem;
+        border-radius: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent);
+        box-shadow: 0 20px 40px -20px var(--accent-glow);
+      }
+
+      .pricing-card.featured {
+        border-color: var(--accent);
+        position: relative;
+        background: rgba(16, 185, 129, 0.05);
+        box-shadow: 0 0 40px -10px var(--accent-glow);
+      }
+
+      .pricing-card .price {
+        font-size: 2rem;
+        font-weight: 800;
+        margin: 0.5rem 0;
+      }
+
+      /* Team */
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .team-card {
+        background: var(--card-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--border);
+        padding: 2rem;
+        border-radius: 1.5rem;
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .team-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent);
+        box-shadow: 0 20px 40px -20px var(--accent-glow);
+      }
+
+      .avatar {
+        width: 180px;
+        height: 180px;
+        background: rgba(16, 185, 129, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 2rem;
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--accent);
+        border: 2px solid var(--accent);
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+      }
+      
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .team-card h4 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .team-card .title {
+        color: var(--accent);
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        display: block;
+      }
+
+      .team-card p {
+        font-size: 0.95rem;
+      }
+
+      /* Pillar Cards */
+      .pillar-card {
+        background: linear-gradient(145deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.8) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 3rem 2.5rem;
+        border-radius: 2rem;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      }
+
+      .pillar-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1) 0%, transparent 60%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .pillar-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(16, 185, 129, 0.3);
+        box-shadow: 0 20px 40px -20px var(--accent-glow);
+      }
+
+      .pillar-card:hover::before {
+        opacity: 1;
+      }
+
+      .pillar-icon-wrapper {
+        width: 60px;
+        height: 60px;
+        background: rgba(16, 185, 129, 0.1);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        transition: all 0.4s ease;
+      }
+
+      .pillar-card:hover .pillar-icon-wrapper {
+        background: var(--accent);
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .pillar-card:hover .pillar-icon-wrapper svg {
+        color: #ffffff !important;
+        stroke: #ffffff !important;
+      }
+
+      /* Reviews Section */
+      .reviews-marquee-container {
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        margin-top: 4rem;
+        padding: 1rem 0;
+        mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+      }
+
+      .reviews-marquee {
+        display: flex;
+        gap: 2rem;
+        width: max-content;
+        animation: scroll-marquee 40s linear infinite;
+      }
+
+      .reviews-marquee:hover {
+        animation-play-state: paused;
+      }
+
+      @keyframes scroll-marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-50% - 1rem)); }
+      }
+
+      .review-card {
+        background: var(--card-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 2.5rem;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        flex-shrink: 0;
+      }
+
+      .review-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent);
+      }
+
+      .review-stars {
+        display: flex;
+        gap: 0.25rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .review-stars svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .review-text {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        flex-grow: 1;
+        font-style: italic;
+        color: var(--text-gray);
+      }
+
+      .review-author {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .author-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(16, 185, 129, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        font-weight: bold;
+        font-size: 1.2rem;
+        border: 1px solid rgba(16, 185, 129, 0.2);
+      }
+
+      .author-info h4 {
+        margin: 0 0 0.25rem 0;
+        font-size: 1rem;
+        color: var(--text-white);
+      }
+
+      .author-info p {
+        margin: 0;
+        font-size: 0.875rem;
+        color: var(--text-gray);
+      }
+
+      /* Contact Form */
+      .contact-container {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 4rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-gray);
+      }
+
+      .form-input, .form-select, .form-textarea {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        font-size: 1.1rem;
+        color: white;
+        outline: none;
+        transition: border-color 0.2s ease;
+      }
+
+      .custom-dropdown-container {
+        position: relative;
+      }
+      .custom-select-wrapper {
+        position: relative;
+        user-select: none;
+      }
+      .custom-select-display {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+      .custom-select-options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #0f172a;
+        border: 1px solid var(--accent);
+        border-radius: 0.75rem;
+        margin-top: 0.5rem;
+        z-index: 10;
+        overflow: hidden;
+        display: none;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      }
+      .custom-select-options.open {
+        display: block;
+      }
+      .custom-option {
+        padding: 1rem;
+        color: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .custom-option:hover {
+        background-color: var(--accent);
+        color: #0f172a;
+      }
+
+      .form-input:focus, .form-select:focus, .form-textarea:focus {
+        border-color: var(--accent);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--bg-alt);
+        padding: 6rem 0 3rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr repeat(3, 1fr);
+        gap: 4rem;
+        margin-bottom: 4rem;
+      }
+
+      .footer-logo-area p {
+        margin-top: 1.5rem;
+        max-width: 300px;
+        font-size: 0.95rem;
+      }
+
+      .footer-col h5 {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.75rem;
+      }
+
+      .footer-links a {
+        color: var(--text-gray);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--text-white);
+      }
+
+      .footer-bottom {
+        padding-top: 3rem;
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.875rem;
+        color: var(--text-gray);
+      }
+
+      /* Floating Button */
+      .floating-btn {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 90;
+        display: none;
+        animation: bounce-btn 3s infinite ease-in-out;
+      }
+
+      @keyframes bounce-btn {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+
+      /* Animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="progress-bar"></div>
+
+    <div class="dynamic-bg">
+      <div class="mesh-gradient"></div>
+      <div class="grid-overlay"></div>
+      <div class="noise-overlay"></div>
+      <div class="floating-nodes" id="nodes-container"></div>
+    </div>
+
+      <!-- Navigation -->
+    <nav id="navbar">
+      <div class="container nav-container">
+        <div style="display: flex; align-items: center;">
+          <div class="menu-toggle" id="menu-toggle">
+            <div class="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <a href="#" class="logo">
+            <div class="logo-container">
+              <svg class="logo-icon-new" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 50C20 33.4315 33.4315 20 50 20C66.5685 20 80 33.4315 80 50C80 66.5685 66.5685 80 50 80" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" />
+                <circle cx="50" cy="50" r="10" fill="var(--accent)">
+                  <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite" />
+                </circle>
+                <path d="M50 20V10M80 50H90M50 80V90M20 50H10" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" opacity="0.5" />
+                <path d="M50 50L75 25" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 4" />
+                <circle cx="75" cy="25" r="4" fill="white" />
+              </svg>
+            </div>
+            <span class="logo-text">Think<span style="color: var(--accent)">Agentic</span></span>
+          </a>
+        </div>
+
+        <style>
+          .logo-container {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          .logo:hover .logo-container {
+            transform: scale(1.1) rotate(10deg);
+          }
+          .logo-icon-new {
+            width: 100%;
+            height: 100%;
+            display: block;
+            filter: drop-shadow(0 0 8px var(--accent-glow));
+            transition: filter 0.3s ease;
+          }
+          .logo:hover .logo-icon-new {
+            filter: drop-shadow(0 0 15px var(--accent));
+          }
+          .logo-text {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+          }
+        </style>
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#use-cases">Success Stories</a>
+          <a href="#platform">Platform</a>
+          <a href="#about">About</a>
+          <a href="https://calendly.com/thinkagentic-support/30min" target="_blank" class="btn btn-primary" style="padding: 0.6rem 1.25rem; font-size: 0.9rem; box-shadow: 0 0 25px var(--accent-glow);">Book a Call</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Side Drawer Menu -->
+    <div class="drawer-backdrop" id="drawer-backdrop"></div>
+    <div class="side-drawer" id="side-drawer">
+      <div class="drawer-content">
+        <a href="#services" class="drawer-link">Services</a>
+        <a href="#use-cases" class="drawer-link">Success Stories</a>
+        <a href="#platform" class="drawer-link">Platform</a>
+        <a href="#about" class="drawer-link">About</a>
+        <a href="#team" class="drawer-link">Team</a>
+        <a href="#contact" class="drawer-link">Contact</a>
+      </div>
+    </div>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-blob" style="top: 20%; left: 10%;"></div>
+        <div class="hero-blob" style="bottom: 10%; right: 10%; background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);"></div>
+        
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="reveal">Systems that Think. <br><span class="text-gradient">Agents that Act.</span></h1>
+            <p class="subheadline reveal">Intelligent Systems. Autonomous Growth.</p>
+            <p class="reveal">We build the technology that reasons and executes while you sleep, giving you the freedom to focus on what matters most. Think Agentic turns complex operations into systems that run themselves.</p>
+            
+            <div class="hero-actions reveal">
+              <a href="#contact" class="btn btn-primary">Start Building</a>
+              <a href="#services" class="btn btn-secondary">View Our Work</a>
+            </div>
+            
+            <p class="trust-line reveal" style="font-size: 1.1rem; opacity: 0.9; display: flex; align-items: center; gap: 0.75rem; justify-content: center;">
+              <span style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 700; color: var(--accent); opacity: 0.8;">
+                <span class="sprint-dot"></span> LIVE
+              </span>
+              Trusted by industry leaders in <span id="rotating-industry">Financial Services</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="hero-graphic reveal">
+          <svg viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="400" cy="300" r="150" stroke="#10b981" stroke-width="1" stroke-dasharray="10 10" opacity="0.3" />
+            <circle cx="400" cy="300" r="250" stroke="#10b981" stroke-width="1" stroke-dasharray="5 5" opacity="0.1" />
+            
+            <!-- Nodes -->
+            <g class="nodes">
+              <circle cx="400" cy="300" r="40" fill="#0f172a" stroke="#10b981" stroke-width="2" />
+              <circle cx="200" cy="150" r="20" fill="#0f172a" stroke="#10b981" stroke-width="1" />
+              <circle cx="600" cy="150" r="20" fill="#0f172a" stroke="#10b981" stroke-width="1" />
+              <circle cx="200" cy="450" r="20" fill="#0f172a" stroke="#10b981" stroke-width="1" />
+              <circle cx="600" cy="450" r="20" fill="#0f172a" stroke="#10b981" stroke-width="1" />
+            </g>
+            
+            <!-- Connections -->
+            <path d="M400 300 L200 150" stroke="#10b981" stroke-width="1" opacity="0.4" />
+            <path d="M400 300 L600 150" stroke="#10b981" stroke-width="1" opacity="0.4" />
+            <path d="M400 300 L200 450" stroke="#10b981" stroke-width="1" opacity="0.4" />
+            <path d="M400 300 L600 450" stroke="#10b981" stroke-width="1" opacity="0.4" />
+            
+            <!-- Glowing edges -->
+            <circle cx="400" cy="300" r="4" fill="#10b981">
+              <animateMotion dur="3s" repeatCount="indefinite" path="M0 0 L-200 -150" />
+            </circle>
+            <circle cx="400" cy="300" r="4" fill="#10b981">
+              <animateMotion dur="4s" repeatCount="indefinite" path="M0 0 L200 -150" />
+            </circle>
+          </svg>
+        </div>
+      </section>
+
+      <!-- Beyond Chatbots -->
+      <section id="platform">
+        <div class="container">
+          <div class="section-header reveal">
+            <h2>Beyond simple chatbots.</h2>
+            <p>Our agents are built to reason, remember, and act. They connect to your tools, learn from your data, and handle complex multi-step tasks without waiting to be told what to do next.</p>
+          </div>
+          
+          <div class="feature-grid">
+            <div class="feature-card reveal">
+              <div class="feature-icon"><i data-lucide="layers"></i></div>
+              <h3>Multi-Agent Orchestration</h3>
+              <p>We design systems where multiple specialized agents collaborate in real time, distributing tasks, verifying each other's work, and reaching outcomes faster than any single model could manage on its own.</p>
+            </div>
+            <div class="feature-card reveal">
+              <div class="feature-icon"><i data-lucide="database"></i></div>
+              <h3>Tool Integration</h3>
+              <p>Our agents connect directly to your databases, CRMs, ERPs, and APIs. They read live data, trigger workflows, and execute actions inside secure, sandboxed environments.</p>
+            </div>
+            <div class="feature-card reveal">
+              <div class="feature-icon"><i data-lucide="brain"></i></div>
+              <h3>Persistent Memory</h3>
+              <p>Every agent we deploy retains long-term context about your organization. Over time, they get sharper, not stale, because they remember how your business actually operates.</p>
+            </div>
+            <div class="feature-card reveal">
+              <div class="feature-icon"><i data-lucide="shield-check"></i></div>
+              <h3>Enterprise Security</h3>
+              <p>We build on bank-grade encryption standards, SOC2-aligned architecture, and strict data boundaries. Your proprietary information stays yours, and it never touches a public model.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Bar -->
+      <section class="stats-bar">
+        <div class="container">
+          <div class="section-header reveal">
+            <h2>Ready to modernize your operations?</h2>
+          </div>
+          <div class="stats-grid reveal">
+            <div class="stat-item">
+              <h4 class="counter" data-target="95">0</h4>
+              <p>Accuracy</p>
+            </div>
+            <div class="stat-item">
+              <h4 class="counter" data-target="10">0</h4>
+              <p>Faster Workflows</p>
+            </div>
+            <div class="stat-item">
+              <h4 class="counter" data-target="50">0</h4>
+              <p>Docs Processed</p>
+            </div>
+            <div class="stat-item">
+              <h4 class="counter" data-target="200">0</h4>
+              <p>Agents Delivered</p>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: 4rem;" class="reveal">
+            <a href="#contact" class="btn btn-primary">Get Started</a>
+            <p style="margin-top: 1rem; font-size: 0.875rem;">No credit card required for consultation.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Demo -->
+      <section>
+        <div class="container">
+          <div class="section-header reveal">
+            <h2>Try Think Agentic</h2>
+            <p>Chat with our demo assistant. Ask about what we do, how we can help your business, or request a quick overview of our services.</p>
+          </div>
+          
+          <div class="demo-container reveal">
+            <div class="chat-header">
+              <div class="status-dot"></div>
+              <span style="font-weight: 600;">Think Agentic Assistant</span>
+            </div>
+            <div class="chat-body">
+              <div class="chat-bubble bubble-ai">
+                Hi! I'm the Think Agentic AI. I'm here to show you how autonomous agents can transform your enterprise. Ask me about our services, our founders, or how we can automate your workflows!
+              </div>
+            </div>
+            <div class="chat-footer">
+              <input type="text" class="chat-input" placeholder="Ask anything about Think Agentic...">
+              <button class="btn btn-primary" style="padding: 0.75rem 1.25rem;"><i data-lucide="send"></i></button>
+            </div>
+            <!-- TODO: connect to live agent API -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section id="services">
+        <div class="container">
+          <div class="section-header reveal">
+            <h2 style="font-size: 3.5rem;">What We Build</h2>
+            <p>We specialize in three practice areas that work together: intelligent agents, connected platforms, and automated workflows. Every engagement is scoped to your specific environment, delivered end to end.</p>
+          </div>
+
+          <!-- Service 1 -->
+          <div class="service-block reveal">
+            <div class="service-content">
+              <h3>Agentic AI Solutions</h3>
+              <p>Autonomous systems that don't just answer questions: they complete work. We build agents capable of multi-step reasoning and tool use.</p>
+              <ul class="service-list">
+                <li><i data-lucide="check-circle"></i> Custom LLM Fine-tuning & RAG</li>
+                <li><i data-lucide="check-circle"></i> Autonomous Research Agents</li>
+                <li><i data-lucide="check-circle"></i> Multi-agent Orchestration Layers</li>
+                <li><i data-lucide="check-circle"></i> Human-in-the-loop Workflows</li>
+              </ul>
+            </div>
+            <div class="service-graphic">
+              <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" class="interactive-svg-1">
+                <style>
+                  .interactive-svg-1 { cursor: pointer; overflow: visible; }
+                  .core-inner { transition: all 0.3s ease; transform-origin: 200px 150px; }
+                  .interactive-svg-1:hover .core-inner { transform: scale(1.3); filter: drop-shadow(0 0 15px var(--accent)); }
+                  .orbit-1 { animation: spin 10s linear infinite; transform-origin: 200px 150px; }
+                  .orbit-2 { animation: spin-reverse 15s linear infinite; transform-origin: 200px 150px; }
+                  .interactive-svg-1:hover .orbit-1 { animation-duration: 3s; }
+                  .interactive-svg-1:hover .orbit-2 { animation-duration: 4s; }
+                  .data-stream { transition: stroke-width 0.3s, opacity 0.3s; }
+                  .interactive-svg-1:hover .data-stream { stroke-width: 4; opacity: 0.8; stroke-dasharray: 10 5; animation: dash 1s linear infinite; }
+                  @keyframes spin { 100% { transform: rotate(360deg); } }
+                  @keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
+                  @keyframes dash { to { stroke-dashoffset: -15; } }
+                </style>
+                <!-- Central Core -->
+                <circle cx="200" cy="150" r="40" fill="rgba(16, 185, 129, 0.1)" stroke="var(--accent)" stroke-width="2" />
+                <circle class="core-inner" cx="200" cy="150" r="20" fill="var(--accent)" opacity="0.8">
+                  <animate attributeName="r" values="18;22;18" dur="2s" repeatCount="indefinite" />
+                </circle>
+                
+                <!-- Orbiting Nodes -->
+                <g>
+                  <circle cx="200" cy="150" r="80" stroke="var(--accent)" stroke-width="1" stroke-dasharray="8 8" opacity="0.2" />
+                  <g class="orbit-1">
+                    <circle cx="280" cy="150" r="12" fill="var(--bg-alt)" stroke="var(--accent)" stroke-width="2" />
+                  </g>
+                  <g class="orbit-2">
+                    <circle cx="120" cy="150" r="12" fill="var(--bg-alt)" stroke="var(--accent)" stroke-width="2" />
+                  </g>
+                </g>
+                
+                <!-- Data Streams -->
+                <path class="data-stream" d="M100 150 H160 M240 150 H300" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" opacity="0.4" />
+                <path class="data-stream" d="M200 50 V110 M200 190 V250" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" opacity="0.4" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="service-block reveal">
+            <div class="service-content">
+              <h3>Microsoft Power Platform</h3>
+              <p>Leverage your existing enterprise stack with high-performance Power Apps, Power Automate, and Copilot Studio implementations.</p>
+              <ul class="service-list">
+                <li><i data-lucide="check-circle"></i> Enterprise Power App Development</li>
+                <li><i data-lucide="check-circle"></i> Complex Power Automate Flows</li>
+                <li><i data-lucide="check-circle"></i> Copilot Studio Customization</li>
+                <li><i data-lucide="check-circle"></i> Dataverse Architecture & Integration</li>
+              </ul>
+            </div>
+            <div class="service-graphic">
+              <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" class="interactive-svg-2">
+                <style>
+                  .interactive-svg-2 { cursor: pointer; overflow: visible; }
+                  .layer { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); transform-origin: center; }
+                  .interactive-svg-2:hover .layer-1 { transform: translateY(-20px) scale(1.05); fill: rgba(16, 185, 129, 0.15); stroke-width: 3; filter: drop-shadow(0 10px 10px rgba(16,185,129,0.2)); }
+                  .interactive-svg-2:hover .layer-2 { transform: scale(1.05); stroke-width: 3; }
+                  .interactive-svg-2:hover .layer-3 { transform: translateY(20px) scale(1.05); fill: rgba(16, 185, 129, 0.3); stroke-width: 3; }
+                  .conn-line { transition: all 0.4s ease; stroke-dasharray: 4 4; }
+                  .interactive-svg-2:hover .conn-line { opacity: 1; stroke-width: 3; animation: flow-down 1s linear infinite; }
+                  .indicator { transition: all 0.3s ease; }
+                  .interactive-svg-2:hover .indicator { r: 8; filter: drop-shadow(0 0 8px var(--accent)); }
+                  @keyframes flow-down { to { stroke-dashoffset: -8; } }
+                </style>
+                <!-- Stacked Layers -->
+                <rect class="layer layer-1" x="100" y="80" width="200" height="40" rx="8" fill="rgba(16, 185, 129, 0.05)" stroke="var(--accent)" stroke-width="2" />
+                <rect class="layer layer-2" x="100" y="130" width="200" height="40" rx="8" fill="rgba(16, 185, 129, 0.1)" stroke="var(--accent)" stroke-width="2" />
+                <rect class="layer layer-3" x="100" y="180" width="200" height="40" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="var(--accent)" stroke-width="2" />
+                
+                <!-- Connecting Lines -->
+                <path class="conn-line" d="M150 120 V130 M250 120 V130 M150 170 V180 M250 170 V180" stroke="var(--accent)" stroke-width="2" opacity="0.5" />
+                
+                <!-- Pulsing Indicators -->
+                <circle class="indicator" cx="125" cy="100" r="4" fill="var(--accent)">
+                  <animate attributeName="opacity" values="1;0.2;1" dur="2s" repeatCount="indefinite" />
+                </circle>
+                <circle class="indicator" cx="275" cy="200" r="4" fill="var(--accent)">
+                  <animate attributeName="opacity" values="0.2;1;0.2" dur="2s" repeatCount="indefinite" />
+                </circle>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="service-block reveal">
+            <div class="service-content">
+              <h3>RPA and Workflow Automation</h3>
+              <p>Eliminate repetitive manual tasks with robust robotic process automation and cloud-native workflow engines.</p>
+              <ul class="service-list">
+                <li><i data-lucide="check-circle"></i> Legacy System Automation</li>
+                <li><i data-lucide="check-circle"></i> API-first Workflow Design</li>
+                <li><i data-lucide="check-circle"></i> Error Handling & Recovery Logic</li>
+                <li><i data-lucide="check-circle"></i> Performance Monitoring & Logging</li>
+              </ul>
+            </div>
+            <div class="service-graphic">
+              <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" class="interactive-svg-3">
+                <style>
+                  .interactive-svg-3 { cursor: pointer; overflow: visible; }
+                  .flow-path { transition: all 0.3s ease; }
+                  .interactive-svg-3:hover .flow-path { stroke-width: 4; opacity: 0.6; stroke-dasharray: 12 12; animation: flow-dash 1s linear infinite; }
+                  .particle { transition: all 0.3s ease; }
+                  .interactive-svg-3:hover .particle { r: 10; filter: drop-shadow(0 0 10px var(--accent)); }
+                  .proc-node { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform-origin: center; }
+                  .interactive-svg-3:hover .proc-node { transform: scale(1.3); fill: rgba(16, 185, 129, 0.2); stroke-width: 3; }
+                  @keyframes flow-dash { to { stroke-dashoffset: -24; } }
+                </style>
+                <!-- Flow Path -->
+                <path class="flow-path" d="M50 150 C100 50, 300 50, 350 150 S100 250, 50 150" stroke="var(--accent)" stroke-width="2" stroke-dasharray="12 6" opacity="0.3" />
+                
+                <!-- Moving Particle -->
+                <circle class="particle" r="6" fill="var(--accent)">
+                  <animateMotion dur="5s" repeatCount="indefinite" path="M50 150 C100 50, 300 50, 350 150 S100 250, 50 150" />
+                </circle>
+                
+                <!-- Processing Nodes -->
+                <rect class="proc-node" x="180" y="40" width="40" height="20" rx="4" fill="var(--bg-alt)" stroke="var(--accent)" stroke-width="2" style="transform-origin: 200px 50px;" />
+                <rect class="proc-node" x="180" y="240" width="40" height="20" rx="4" fill="var(--bg-alt)" stroke="var(--accent)" stroke-width="2" style="transform-origin: 200px 250px;" />
+                <rect class="proc-node" x="40" y="140" width="20" height="20" rx="4" fill="var(--bg-alt)" stroke="var(--accent)" stroke-width="2" style="transform-origin: 50px 150px;" />
+                <rect class="proc-node" x="340" y="140" width="20" height="20" rx="4" fill="var(--bg-alt)" stroke="var(--accent)" stroke-width="2" style="transform-origin: 350px 150px;" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="service-block reveal">
+            <div class="service-content">
+              <h3>AI Readiness & Coaching Sessions</h3>
+              <p>Prepare your team and infrastructure for the agentic future. We provide strategic guidance to ensure you adopt AI securely and effectively.</p>
+              <ul class="service-list">
+                <li><i data-lucide="check-circle"></i> Executive AI Strategy Workshops</li>
+                <li><i data-lucide="check-circle"></i> Data Readiness & Governance Audits</li>
+                <li><i data-lucide="check-circle"></i> Technical Team Upskilling</li>
+                <li><i data-lucide="check-circle"></i> Use-Case Discovery & Prioritization</li>
+              </ul>
+            </div>
+            <div class="service-graphic">
+              <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" class="interactive-svg">
+                <style>
+                  .interactive-svg { cursor: pointer; overflow: visible; }
+                  .orbit-ring { transform-origin: 200px 150px; animation: spin 15s linear infinite; }
+                  .interactive-svg:hover .orbit-ring { animation-duration: 4s; stroke-dasharray: 12 12; stroke-width: 3; }
+                  
+                  .node-group { transform-origin: 200px 150px; animation: breathe 4s ease-in-out infinite; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+                  .interactive-svg:hover .node-group { transform: scale(1.2) rotate(15deg); animation: none; }
+                  
+                  .center-core { transition: all 0.3s ease; transform-origin: 200px 150px; }
+                  .interactive-svg:hover .center-core { filter: drop-shadow(0 0 15px var(--accent)); transform: scale(1.5); }
+                  
+                  .node-dot { transition: all 0.3s ease; }
+                  .interactive-svg:hover .node-dot { fill: var(--accent); filter: drop-shadow(0 0 8px var(--accent)); }
+                  
+                  .inner-circle { transition: all 0.5s ease; transform-origin: 200px 150px; }
+                  .interactive-svg:hover .inner-circle { transform: scale(0.8); fill: rgba(16, 185, 129, 0.2); }
+
+                  @keyframes spin { 100% { transform: rotate(360deg); } }
+                  @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+                </style>
+                
+                <!-- Brain/Network Concept -->
+                <circle class="orbit-ring" cx="200" cy="150" r="60" fill="rgba(16, 185, 129, 0.02)" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 6" />
+                
+                <g class="node-group">
+                  <!-- Connecting lines to nodes -->
+                  <path d="M200 120 L150 80 M200 120 L250 80 M200 180 L150 220 M200 180 L250 220 M170 150 L120 150 M230 150 L280 150" stroke="var(--accent)" stroke-width="2" opacity="0.5" />
+                  
+                  <!-- Nodes -->
+                  <circle class="node-dot" cx="150" cy="80" r="8" fill="var(--bg-alt)" stroke="var(--accent)" stroke-width="2" />
+                  <circle class="node-dot" cx="250" cy="80" r="8" fill="var(--bg-alt)" stroke="var(--accent)" stroke-width="2" />
+                  <circle class="node-dot" cx="150" cy="220" r="8" fill="var(--bg-alt)" stroke="var(--accent)" stroke-width="2" />
+                  <circle class="node-dot" cx="250" cy="220" r="8" fill="var(--bg-alt)" stroke="var(--accent)" stroke-width="2" />
+                  <circle class="node-dot" cx="120" cy="150" r="8" fill="var(--bg-alt)" stroke="var(--accent)" stroke-width="2" />
+                  <circle class="node-dot" cx="280" cy="150" r="8" fill="var(--bg-alt)" stroke="var(--accent)" stroke-width="2" />
+                </g>
+
+                <circle class="inner-circle" cx="200" cy="150" r="30" fill="rgba(16, 185, 129, 0.1)" stroke="var(--accent)" stroke-width="2" />
+                
+                <!-- Pulsing center -->
+                <circle class="center-core" cx="200" cy="150" r="10" fill="var(--accent)">
+                  <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite" />
+                </circle>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Use Cases -->
+      <section id="use-cases" style="background: linear-gradient(to bottom, var(--bg), var(--bg-alt));">
+        <div class="container">
+          <div class="section-header reveal">
+            <h2 style="font-size: 3.5rem; line-height: 0.9; margin-bottom: 1.5rem;">Proven <span class="text-gradient">Impact.</span></h2>
+            <p style="font-size: 1.25rem; max-width: 800px;">We don't just build agents; we deliver measurable business outcomes that redefine enterprise efficiency.</p>
+          </div>
+
+          <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+            <!-- Case 1: RFP Automation -->
+            <div class="feature-card reveal" style="display: flex; flex-direction: column;">
+              <div style="margin-bottom: 2rem;">
+                <div class="impact-counter" data-target="70" data-suffix="%" style="font-size: 3.5rem; font-weight: 800; color: var(--accent); line-height: 1; letter-spacing: -0.05em;">70%</div>
+                <div style="font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem;">Time Savings Achieved</div>
+              </div>
+              <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-white);">RFP Automation with Feedback Loop</h3>
+              <p style="font-size: 1rem; line-height: 1.6; color: var(--text-gray);">Engineered an intelligent RFP response system that drafts responses from historical data and incorporates a human-in-the-loop feedback loop for continuous learning.</p>
+            </div>
+
+            <!-- Case 2: Hiring Automation -->
+            <div class="feature-card reveal" style="display: flex; flex-direction: column;">
+              <div style="margin-bottom: 2rem;">
+                <div class="impact-counter" data-target="4" data-suffix="x" style="font-size: 3.5rem; font-weight: 800; color: var(--accent); line-height: 1; letter-spacing: -0.05em;">4x</div>
+                <div style="font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem;">Faster Hiring Cycle</div>
+              </div>
+              <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-white);">Enterprise Hiring Automation</h3>
+              <p style="font-size: 1rem; line-height: 1.6; color: var(--text-gray);">Deployed an end-to-end hiring solution: automated resume parsing, candidate screening, and interview scheduling. Reduced time-to-interview from 14 days to 3.5 days.</p>
+            </div>
+
+            <!-- Case 3: Customer Service AI -->
+            <div class="feature-card reveal" style="display: flex; flex-direction: column;">
+              <div style="margin-bottom: 2rem;">
+                <div class="impact-counter" data-target="85" data-suffix="%" style="font-size: 3.5rem; font-weight: 800; color: var(--accent); line-height: 1; letter-spacing: -0.05em;">85%</div>
+                <div style="font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem;">Self-Resolution Rate</div>
+              </div>
+              <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-white);">Retail Customer Service Agent</h3>
+              <p style="font-size: 1rem; line-height: 1.6; color: var(--text-gray);">Developed a national retail AI agent handling 5,000+ monthly interactions. Manages product inquiries, order tracking, and returns across web/mobile.</p>
+            </div>
+
+            <!-- Case 4: Teams Knowledge Agent -->
+            <div class="feature-card reveal" style="display: flex; flex-direction: column;">
+              <div style="margin-bottom: 2rem;">
+                <div class="impact-counter" data-target="60" data-suffix="h" style="font-size: 3.5rem; font-weight: 800; color: var(--accent); line-height: 1; letter-spacing: -0.05em;">60h</div>
+                <div style="font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem;">Weekly Support Hours Saved</div>
+              </div>
+              <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-white);">Teams-Integrated Knowledge Agent</h3>
+              <p style="font-size: 1rem; line-height: 1.6; color: var(--text-gray);">Embedded AI agents directly into Teams channels to answer complex operational questions by reading thousands of pages of internal documentation in real-time.</p>
+            </div>
+
+            <!-- Case 5: API-Driven Supply Chain -->
+            <div class="feature-card reveal" style="display: flex; flex-direction: column;">
+              <div style="margin-bottom: 2rem;">
+                <div class="impact-counter" data-target="99" data-suffix="%" style="font-size: 3.5rem; font-weight: 800; color: var(--accent); line-height: 1; letter-spacing: -0.05em;">99%</div>
+                <div style="font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem;">Data Accuracy Improvement</div>
+              </div>
+              <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-white);">API-Driven Supply Chain Agent</h3>
+              <p style="font-size: 1rem; line-height: 1.6; color: var(--text-gray);">Connected AI agents to external logistics APIs to automate real-time tracking, inventory adjustments, and vendor communications without manual intervention.</p>
+            </div>
+
+            <!-- Case 6: Document Intelligence -->
+            <div class="feature-card reveal" style="display: flex; flex-direction: column;">
+              <div style="margin-bottom: 2rem;">
+                <div class="impact-counter" data-target="10" data-suffix="k+" style="font-size: 3.5rem; font-weight: 800; color: var(--accent); line-height: 1; letter-spacing: -0.05em;">10k+</div>
+                <div style="font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem;">Pages Processed Daily</div>
+              </div>
+              <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-white);">Massive Document Intelligence</h3>
+              <p style="font-size: 1rem; line-height: 1.6; color: var(--text-gray);">Engineered RAG architectures capable of processing and indexing 10,000+ pages of legal and technical documents for instant semantic search and summarization.</p>
+            </div>
+
+            <!-- Case 7: Federal Security Clearance -->
+            <div class="feature-card reveal" style="display: flex; flex-direction: column;">
+              <div style="margin-bottom: 2rem;">
+                <div class="impact-counter" data-target="50" data-suffix="%" style="font-size: 3.5rem; font-weight: 800; color: var(--accent); line-height: 1; letter-spacing: -0.05em;">50%</div>
+                <div style="font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem;">Processing Speed Increase</div>
+              </div>
+              <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-white);">Federal Security Clearance Workflow</h3>
+              <p style="font-size: 1rem; line-height: 1.6; color: var(--text-gray);">Automated complex federal security clearance workflows, ensuring strict compliance while reducing administrative overhead and processing bottlenecks.</p>
+            </div>
+
+            <!-- Case 8: Visual Inspection -->
+            <div class="feature-card reveal" style="display: flex; flex-direction: column;">
+              <div style="margin-bottom: 2rem;">
+                <div class="impact-counter" data-target="92" data-suffix="%" style="font-size: 3.5rem; font-weight: 800; color: var(--accent); line-height: 1; letter-spacing: -0.05em;">92%</div>
+                <div style="font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem;">Defect Detection Accuracy</div>
+              </div>
+              <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-white);">AI Visual Quality Inspection</h3>
+              <p style="font-size: 1rem; line-height: 1.6; color: var(--text-gray);">Orchestrated Custom Vision and GenAI models to automate defect detection in manufacturing, reducing quality inspection time by 70%.</p>
+            </div>
+            <!-- More Impacts Card -->
+            <div class="feature-card reveal" style="display: flex; flex-direction: column; justify-content: center; align-items: center; border: 2px dashed var(--border); background: rgba(16, 185, 129, 0.02); min-height: 300px; text-align: center; position: relative; overflow: hidden;">
+              <div style="position: absolute; top: -20%; right: -20%; width: 150px; height: 150px; background: var(--accent-glow); filter: blur(40px); border-radius: 50%; opacity: 0.3;"></div>
+              <div style="width: 64px; height: 64px; border-radius: 16px; background: rgba(16, 185, 129, 0.1); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: var(--accent); position: relative;">
+                <i data-lucide="sparkles" style="width: 32px; height: 32px;"></i>
+              </div>
+              <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem; color: var(--text-white); font-weight: 700;">And many more...</h3>
+              <p style="font-size: 0.95rem; opacity: 0.7; max-width: 240px; margin: 0 auto;">We've delivered dozens of bespoke agentic solutions across diverse sectors.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Process -->
+      <section style="background: var(--bg-alt);">
+        <div class="container">
+          <div class="section-header reveal">
+            <h2>How we work together.</h2>
+            <p>We don't believe in "black box" solutions. Our process is deeply collaborative, human-centric, and focused on empowering your team from day one.</p>
+          </div>
+          
+          <div class="process-grid reveal">
+            <div class="process-step">
+              <div class="step-number">01</div>
+              <h4>Discovery & Scrum</h4>
+              <p style="font-size: 0.95rem; margin-top: 1rem;">We kick off with deep-dive workshops and establish a rigorous Scrum cadence. Daily stand-ups and transparent backlogs keep us perfectly aligned.</p>
+            </div>
+            <div class="process-step">
+              <div class="step-number">02</div>
+              <h4>Rapid V1 Delivery</h4>
+              <p style="font-size: 0.95rem; margin-top: 1rem;">We don't wait for perfection. We build and deploy a functional V1 ASAP so your team can start realizing value while we iterate toward the final vision.</p>
+            </div>
+            <div class="process-step">
+              <div class="step-number">03</div>
+              <h4>Continuous Iteration</h4>
+              <p style="font-size: 0.95rem; margin-top: 1rem;">Using real-world feedback from your V1, we refine and expand the system in bi-weekly sprints, ensuring the solution evolves with your actual needs.</p>
+            </div>
+            <div class="process-step">
+              <div class="step-number">04</div>
+              <h4>Scale & Empower</h4>
+              <p style="font-size: 0.95rem; margin-top: 1rem;">Once the core is solid, we scale the solution across your enterprise while conducting hands-on training to ensure your team owns the future.</p>
+            </div>
+          </div>
+
+          <!-- Agile Loop Visualization -->
+          <div class="agile-loop-container reveal">
+            <div class="sprint-status">
+              <div class="sprint-dot"></div>
+              ACTIVE SPRINT: 04
+            </div>
+            <div class="agile-visual">
+              <div class="loop-circle">
+                <div class="loop-node node-1" title="Discovery"><i data-lucide="refresh-cw" style="width: 16px;"></i></div>
+                <div class="loop-node node-2" title="Feedback"><i data-lucide="message-square" style="width: 16px;"></i></div>
+                <div class="loop-node node-3" title="Build"><i data-lucide="code" style="width: 16px;"></i></div>
+                <div class="loop-node node-4" title="Audit"><i data-lucide="search" style="width: 16px;"></i></div>
+              </div>
+              <div class="v1-badge">V1 READY</div>
+            </div>
+            <div class="agile-content">
+              <h3>The "V1 to Infinity" Loop</h3>
+              <p>We believe in momentum. Our agile methodology is designed to get you from concept to a working solution in weeks, not months. We take care of all Scrum ceremonies, so you can focus on the vision.</p>
+              
+              <div class="agile-features">
+                <div style="grid-column: span 2; background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 1.5rem; border: 1px solid var(--border); margin-bottom: 1rem;">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; font-size: 0.85rem; font-weight: 700;">
+                    <span>SPRINT PROGRESS</span>
+                    <span style="color: var(--accent);">85%</span>
+                  </div>
+                  <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 99px; overflow: hidden;">
+                    <div style="width: 85%; height: 100%; background: var(--accent); box-shadow: 0 0 10px var(--accent-glow); animation: progress-glow 2s infinite;"></div>
+                  </div>
+                </div>
+                <div class="agile-feature">
+                  <i data-lucide="zap"></i>
+                  <div>
+                    <h5 style="color: white; margin-bottom: 0.25rem;">Sprint Zero</h5>
+                    <p style="font-size: 0.85rem;">Rapid setup and environment readiness in days.</p>
+                  </div>
+                </div>
+                <div class="agile-feature">
+                  <i data-lucide="users"></i>
+                  <div>
+                    <h5 style="color: white; margin-bottom: 0.25rem;">Scrum Ceremonies</h5>
+                    <p style="font-size: 0.85rem;">Full ceremony management: Stand-ups, Reviews, Retros.</p>
+                  </div>
+                </div>
+                <div class="agile-feature">
+                  <i data-lucide="repeat"></i>
+                  <div>
+                    <h5 style="color: white; margin-bottom: 0.25rem;">Continuous Value</h5>
+                    <p style="font-size: 0.85rem;">New features delivered every 2-week sprint.</p>
+                  </div>
+                </div>
+                <div class="agile-feature">
+                  <i data-lucide="shield-check"></i>
+                  <div>
+                    <h5 style="color: white; margin-bottom: 0.25rem;">Quality Gates</h5>
+                    <p style="font-size: 0.85rem;">Automated testing and security checks in every cycle.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing -->
+      <section id="pricing">
+        <div class="container">
+          <div class="section-header reveal" style="max-width: 900px;">
+            <h2>Built for Enterprise. Designed to Scale.</h2>
+            <p>Flexible engagement models designed to fit your organization's specific needs and project scope.</p>
+          </div>
+          
+          <div class="pricing-grid">
+            <div class="pricing-card reveal">
+              <div class="feature-icon"><i data-lucide="package"></i></div>
+              <h3>Project-based</h3>
+              <p style="font-size: 0.95rem;">Defined scope, fixed timeline. Perfect for specific automation needs or agent deployments.</p>
+              <div class="price">Custom</div>
+              <ul class="service-list" style="margin-bottom: 2rem;">
+                <li><i data-lucide="check"></i> End-to-end delivery</li>
+                <li><i data-lucide="check"></i> Fixed deliverables</li>
+                <li><i data-lucide="check"></i> Post-launch support</li>
+              </ul>
+              <a href="#contact" class="btn btn-secondary" style="margin-top: auto;">Inquire Now</a>
+            </div>
+            
+            <div class="pricing-card featured reveal">
+              <div class="feature-icon"><i data-lucide="zap"></i></div>
+              <h3>Retainer</h3>
+              <p style="font-size: 0.95rem;">Ongoing development and optimization. Best for teams building a suite of agentic tools.</p>
+              <div class="price">Monthly</div>
+              <ul class="service-list" style="margin-bottom: 2rem;">
+                <li><i data-lucide="check"></i> Priority development</li>
+                <li><i data-lucide="check"></i> Continuous optimization</li>
+                <li><i data-lucide="check"></i> Dedicated architect</li>
+              </ul>
+              <a href="#contact" class="btn btn-primary" style="margin-top: auto;">Get Started</a>
+            </div>
+            
+            <div class="pricing-card reveal">
+              <div class="feature-icon"><i data-lucide="users"></i></div>
+              <h3>Advisory</h3>
+              <p style="font-size: 0.95rem;">Strategic guidance for leadership teams. Architecture reviews and AI roadmap planning.</p>
+              <div class="price">Strategic</div>
+              <ul class="service-list" style="margin-bottom: 2rem;">
+                <li><i data-lucide="check"></i> Roadmap planning</li>
+                <li><i data-lucide="check"></i> Tech stack audit</li>
+                <li><i data-lucide="check"></i> Executive workshops</li>
+              </ul>
+              <a href="#contact" class="btn btn-secondary" style="margin-top: auto;">Book Advisory</a>
+            </div>
+          </div>
+          
+          <div style="text-align: center; margin-top: 5rem;" class="reveal">
+            <a href="https://calendly.com/thinkagentic-support/30min" target="_blank" class="btn btn-primary" style="padding: 1.25rem 3rem; font-size: 1.125rem;">Book a Free Discovery Call</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" style="background: var(--bg-alt);">
+        <div class="container">
+          <div class="section-header reveal">
+            <h2>Why Think Agentic?</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 4rem; text-align: left;">
+              <div class="hover-glow" style="background: var(--glass); padding: 2rem; border-radius: 1.5rem; border: 1px solid var(--border);">
+                <div style="width: 50px; height: 50px; background: rgba(16, 185, 129, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                  <i data-lucide="brain" style="color: var(--accent); width: 28px; height: 28px;"></i>
+                </div>
+                <h3 style="font-size: 1.75rem; margin-bottom: 1rem; color: var(--accent);">Think.</h3>
+                <p style="font-size: 1rem; line-height: 1.6; color: var(--text-white); font-weight: 500;">Real intelligence is not reactive. It plans. It reasons. It considers consequences before acting. This is what separates a great operator from a good one, and it's what separates a great AI system from a basic one.</p>
+              </div>
+              
+              <div class="hover-glow" style="background: var(--glass); padding: 2rem; border-radius: 1.5rem; border: 1px solid var(--border);">
+                <div style="width: 50px; height: 50px; background: rgba(16, 185, 129, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                  <i data-lucide="zap" style="color: var(--accent); width: 28px; height: 28px;"></i>
+                </div>
+                <h3 style="font-size: 1.75rem; margin-bottom: 1rem; color: var(--accent);">Agentic.</h3>
+                <p style="font-size: 1rem; line-height: 1.6; color: var(--text-white); font-weight: 500;">The future of work is not about AI that waits to be asked. It's about systems that take initiative, execute autonomously, and get things done without someone holding their hand through every step.</p>
+              </div>
+            </div>
+
+            <div style="margin-top: 4rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+              <p style="font-size: 1.25rem; line-height: 1.8; color: var(--text-gray);">Put them together and you get what we are building toward: Technology that genuinely thinks, and then genuinely acts. Not a chatbot. Not a dashboard. <span style="color: var(--accent); font-weight: 700;">A partner that works while you sleep.</span></p>
+            </div>
+          </div>
+
+          <div id="team" class="team-grid reveal" style="margin-top: 8rem; scroll-margin-top: 120px;">
+            <div class="team-card">
+              <div class="avatar">
+                <img src="/Haseeb.jpg" alt="Haseeb" onerror="this.style.display='none'; this.parentElement.innerHTML='HA'">
+              </div>
+              <h4>Haseeb</h4>
+              <span class="title">CEO</span>
+              <p>Agentic AI and PowerPlatform Architect. Specialist in LLMs, Prompt Engineering, RAG Architecture, and Agent Orchestration with a focus on enterprise Power BI reporting.</p>
+            </div>
+            <div class="team-card">
+              <div class="avatar">
+                <img src="/Hammad.jpg" alt="Hammad" onerror="this.style.display='none'; this.parentElement.innerHTML='HM'">
+              </div>
+              <h4>Hammad</h4>
+              <span class="title">CIO</span>
+              <p>Data Governance and Security Specialist. Expert in complex system architecture and secure Power Platform ecosystems.</p>
+            </div>
+            <div class="team-card">
+              <div class="avatar">
+                <img src="/Hassan.jpg" alt="Hassan" onerror="this.style.display='none'; this.parentElement.innerHTML='HS'">
+              </div>
+              <h4>Hassan</h4>
+              <span class="title">COO</span>
+              <p>Strategy and Research Specialist. Focused on scaling automated workflows and ensuring bank-grade operational standards.</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 10rem;" class="reveal">
+            <h3 style="font-size: 3rem; text-align: center; margin-bottom: 5rem; letter-spacing: -0.04em;">The Think Agentic <span class="text-gradient">Standard</span></h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+              <!-- Pillar 1 -->
+              <div class="pillar-card">
+                <div class="pillar-icon-wrapper">
+                  <i data-lucide="building-2" style="color: var(--accent);"></i>
+                </div>
+                <h4 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-white); position: relative; z-index: 1;">Deep Enterprise Experience</h4>
+                <p style="font-size: 1rem; line-height: 1.6; color: var(--text-gray); position: relative; z-index: 1;">We understand the complex constraints of banking, insurance, and government sectors. Our solutions are built to navigate high-stakes environments.</p>
+              </div>
+
+              <!-- Pillar 2 -->
+              <div class="pillar-card">
+                <div class="pillar-icon-wrapper">
+                  <i data-lucide="shield-check" style="color: var(--accent);"></i>
+                </div>
+                <h4 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-white); position: relative; z-index: 1;">Security First</h4>
+                <p style="font-size: 1rem; line-height: 1.6; color: var(--text-gray); position: relative; z-index: 1;">SOC2-aligned architecture is our baseline, not an afterthought. We implement bank-grade security protocols across every agentic workflow.</p>
+              </div>
+
+              <!-- Pillar 3 -->
+              <div class="pillar-card">
+                <div class="pillar-icon-wrapper">
+                  <i data-lucide="cpu" style="color: var(--accent);"></i>
+                </div>
+                <h4 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-white); position: relative; z-index: 1;">Bespoke Implementation</h4>
+                <p style="font-size: 1rem; line-height: 1.6; color: var(--text-gray); position: relative; z-index: 1;">No cookie-cutter bots. Every system is custom-engineered for your specific data, culture, and operational requirements.</p>
+              </div>
+
+              <!-- Pillar 4 -->
+              <div class="pillar-card">
+                <div class="pillar-icon-wrapper">
+                  <i data-lucide="layers" style="color: var(--accent);"></i>
+                </div>
+                <h4 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-white); position: relative; z-index: 1;">End-to-End Delivery</h4>
+                <p style="font-size: 1rem; line-height: 1.6; color: var(--text-gray); position: relative; z-index: 1;">From initial discovery to full team training and long-term support. We don't just ship code: we empower your organization.</p>
+              </div>
+
+              <!-- Pillar 5 -->
+              <div class="pillar-card">
+                <div class="pillar-icon-wrapper">
+                  <i data-lucide="award" style="color: var(--accent);"></i>
+                </div>
+                <h4 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-white); position: relative; z-index: 1;">Certified Excellence</h4>
+                <p style="font-size: 1rem; line-height: 1.6; color: var(--text-gray); position: relative; z-index: 1;">Our team holds 50+ official certifications across AI, Power Platform, Data Governance, and Project Management. We bring validated expertise to every challenge.</p>
+              </div>
+
+              <!-- Pillar 6 -->
+              <div class="pillar-card">
+                <div class="pillar-icon-wrapper">
+                  <i data-lucide="zap" style="color: var(--accent);"></i>
+                </div>
+                <h4 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-white); position: relative; z-index: 1;">Agile Momentum <span style="font-size: 0.65rem; background: rgba(16, 185, 129, 0.2); padding: 0.2rem 0.5rem; border-radius: 4px; vertical-align: middle; margin-left: 0.5rem;">SCRUM</span></h4>
+                <p style="font-size: 1rem; line-height: 1.6; color: var(--text-gray);">We live in Scrum. By delivering a functional V1 early and iterating continuously, we ensure you start realizing value ASAP while we refine the system in real-time.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Reviews Section -->
+      <section id="reviews">
+        <div class="container">
+          <div class="section-header reveal">
+            <h2>What Our Clients Say</h2>
+            <p>Don't just take our word for it. Here is how our autonomous agents are transforming operations across different industries.</p>
+          </div>
+          
+          <div class="reviews-marquee-container reveal">
+            <div class="reviews-marquee">
+              <!-- Review 1: Barber Shop -->
+              <div class="review-card">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="review-text">"Think Agentic completely transformed how we handle bookings. The AI agent manages our calendar, answers customer questions 24/7, and even handles rescheduling. No more missed calls while we're cutting hair."</p>
+                <div class="review-author">
+                  <div class="author-avatar">M</div>
+                  <div class="author-info">
+                    <h4>Marcus T.</h4>
+                    <p>Owner, Sharp Cuts Barbershop</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Review 2: Barber Shop -->
+              <div class="review-card">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="review-text">"We used to spend hours every week texting clients for reminders and follow-ups. Now, the system does it automatically and re-engages lost clients. Our no-show rate dropped to almost zero."</p>
+                <div class="review-author">
+                  <div class="author-avatar">S</div>
+                  <div class="author-info">
+                    <h4>Sarah L.</h4>
+                    <p>Manager, The Fade Studio</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Review 3: Engineering -->
+              <div class="review-card">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="review-text">"The multi-agent orchestration they built for our QA process is incredible. It automatically parses engineering specs, generates test cases, and flags inconsistencies before a human even looks at it. Saved us hundreds of engineering hours."</p>
+                <div class="review-author">
+                  <div class="author-avatar">D</div>
+                  <div class="author-info">
+                    <h4>David K.</h4>
+                    <p>VP of Engineering, TechFlow Systems</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Review 4: Finance -->
+              <div class="review-card">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="review-text">"As an accounting firm, accuracy is everything. Think Agentic built a secure, SOC2-compliant agent that reconciles invoices across three different platforms. It's like having a tireless junior accountant."</p>
+                <div class="review-author">
+                  <div class="author-avatar">E</div>
+                  <div class="author-info">
+                    <h4>Elena R.</h4>
+                    <p>Managing Partner, Apex Financial</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Review 5: E-commerce -->
+              <div class="review-card">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="review-text">"Our customer support ticket volume was crushing us. The AI agent resolves 70% of inquiries instantly, from tracking orders to processing returns, and seamlessly hands off complex issues to our human team."</p>
+                <div class="review-author">
+                  <div class="author-avatar">J</div>
+                  <div class="author-info">
+                    <h4>James W.</h4>
+                    <p>Director of Ops, Nova Retail</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Duplicate for infinite scroll -->
+              <!-- Review 1: Barber Shop -->
+              <div class="review-card" aria-hidden="true">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="review-text">"Think Agentic completely transformed how we handle bookings. The AI agent manages our calendar, answers customer questions 24/7, and even handles rescheduling. No more missed calls while we're cutting hair."</p>
+                <div class="review-author">
+                  <div class="author-avatar">M</div>
+                  <div class="author-info">
+                    <h4>Marcus T.</h4>
+                    <p>Owner, Sharp Cuts Barbershop</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Review 2: Barber Shop -->
+              <div class="review-card" aria-hidden="true">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="review-text">"We used to spend hours every week texting clients for reminders and follow-ups. Now, the system does it automatically and re-engages lost clients. Our no-show rate dropped to almost zero."</p>
+                <div class="review-author">
+                  <div class="author-avatar">S</div>
+                  <div class="author-info">
+                    <h4>Sarah L.</h4>
+                    <p>Manager, The Fade Studio</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Review 3: Engineering -->
+              <div class="review-card" aria-hidden="true">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="review-text">"The multi-agent orchestration they built for our QA process is incredible. It automatically parses engineering specs, generates test cases, and flags inconsistencies before a human even looks at it. Saved us hundreds of engineering hours."</p>
+                <div class="review-author">
+                  <div class="author-avatar">D</div>
+                  <div class="author-info">
+                    <h4>David K.</h4>
+                    <p>VP of Engineering, TechFlow Systems</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Review 4: Finance -->
+              <div class="review-card" aria-hidden="true">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="review-text">"As an accounting firm, accuracy is everything. Think Agentic built a secure, SOC2-compliant agent that reconciles invoices across three different platforms. It's like having a tireless junior accountant."</p>
+                <div class="review-author">
+                  <div class="author-avatar">E</div>
+                  <div class="author-info">
+                    <h4>Elena R.</h4>
+                    <p>Managing Partner, Apex Financial</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Review 5: E-commerce -->
+              <div class="review-card" aria-hidden="true">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="review-text">"Our customer support ticket volume was crushing us. The AI agent resolves 70% of inquiries instantly, from tracking orders to processing returns, and seamlessly hands off complex issues to our human team."</p>
+                <div class="review-author">
+                  <div class="author-avatar">J</div>
+                  <div class="author-info">
+                    <h4>James W.</h4>
+                    <p>Director of Ops, Nova Retail</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact">
+        <div class="container">
+          <div class="contact-container">
+            <div class="reveal">
+              <h2 style="font-size: 3.5rem; margin-bottom: 1.5rem;">Let's Build Something.</h2>
+              <p style="margin-bottom: 2rem;">Tell us what you are working on. We will review your brief and follow up within one business day to schedule a discovery call.</p>
+              
+              <div style="margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 1rem; width: fit-content;">
+                <div style="width: 40px; height: 40px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                  <i data-lucide="mail" style="color: var(--accent); width: 20px;"></i>
+                </div>
+                <div>
+                  <div style="font-size: 0.85rem; color: var(--text-gray); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Direct Email</div>
+                  <a href="mailto:support@thinkagentic.ca" style="color: var(--text-white); text-decoration: none; font-weight: 500; font-size: 1.1rem; transition: color 0.2s ease;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-white)'">support@thinkagentic.ca</a>
+                </div>
+              </div>
+              
+              <form id="contact-form">
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" name="name" class="form-input" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" name="email" class="form-input" placeholder="john@company.com" required>
+                </div>
+                <div class="form-group">
+                  <label>Phone Number</label>
+                  <input type="tel" name="phone" class="form-input" placeholder="+1 (555) 000-0000">
+                </div>
+                <div class="form-group custom-dropdown-container">
+                  <label>Area of Interest</label>
+                  <div class="custom-select-wrapper">
+                    <div class="custom-select-display form-select" tabindex="0">
+                      <span class="selected-text" style="color: rgba(255, 255, 255, 0.7);">Select an area</span>
+                      <i data-lucide="chevron-down" style="width: 20px; height: 20px;"></i>
+                    </div>
+                    <div class="custom-select-options">
+                      <div class="custom-option" data-value="Agentic AI Solutions">Agentic AI Solutions</div>
+                      <div class="custom-option" data-value="Microsoft Power Platform">Microsoft Power Platform</div>
+                      <div class="custom-option" data-value="RPA and Workflow Automation">RPA and Workflow Automation</div>
+                      <div class="custom-option" data-value="End-to-End Project Delivery">End-to-End Project Delivery</div>
+                      <div class="custom-option" data-value="Strategic Advisory">Strategic Advisory</div>
+                      <div class="custom-option" data-value="Not Sure Yet">Not Sure Yet</div>
+                      <div class="custom-option" data-value="Other">Other</div>
+                    </div>
+                  </div>
+                  <input type="hidden" name="interest" id="interest-input" required>
+                </div>
+                <div class="form-group">
+                  <label>Tell us about your project or inquiry</label>
+                  <textarea name="message" class="form-textarea" rows="5" placeholder="Tell us about your business, the challenge you are solving, and any relevant context about your current tech environment." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.25rem;">Send Inquiry</button>
+              </form>
+            </div>
+            
+            <div class="reveal">
+              <div style="background: var(--bg-alt); border: 1px solid var(--border); padding: 3rem; border-radius: 1.5rem;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Book a Free Discovery Call</h3>
+                <p style="font-size: 0.95rem; margin-bottom: 2rem;">A 30-minute conversation to understand your situation and see if we are the right fit. No pitch deck, no pressure. Just a practical discussion about what is possible.</p>
+                
+                <ul class="service-list" style="margin-bottom: 2.5rem;">
+                  <li><i data-lucide="check-circle"></i> Technical feasibility review</li>
+                  <li><i data-lucide="check-circle"></i> High-level architecture sketch</li>
+                  <li><i data-lucide="check-circle"></i> Estimated timelines & budget</li>
+                  <li><i data-lucide="check-circle"></i> Strategic AI roadmap advice</li>
+                </ul>
+                
+                <a href="https://calendly.com/thinkagentic-support/30min" target="_blank" class="btn btn-primary" style="width: 100%;">Book Your Call</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-logo-area">
+            <a href="#" class="logo">
+              <div class="logo-container">
+                <svg class="logo-icon-new" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 50C20 33.4315 33.4315 20 50 20C66.5685 20 80 33.4315 80 50C80 66.5685 66.5685 80 50 80" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" />
+                  <circle cx="50" cy="50" r="10" fill="var(--accent)">
+                    <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite" />
+                  </circle>
+                  <path d="M50 20V10M80 50H90M50 80V90M20 50H10" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" opacity="0.5" />
+                  <path d="M50 50L75 25" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 4" />
+                  <circle cx="75" cy="25" r="4" fill="white" />
+                </svg>
+              </div>
+              <span class="logo-text">Think<span style="color: var(--accent)">Agentic</span></span>
+            </a>
+            <p>Engineering the agentic future. We build autonomous systems that plan, reason, and execute for the modern enterprise.</p>
+            <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+              <a href="mailto:support@thinkagentic.ca" style="color: var(--text-gray); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; transition: color 0.2s ease;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-gray)'">
+                <i data-lucide="mail" style="width: 18px;"></i> support@thinkagentic.ca
+              </a>
+              <a href="https://www.thinkagentic.ca" target="_blank" rel="noopener noreferrer" style="color: var(--text-gray); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; transition: color 0.2s ease;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-gray)'">
+                <i data-lucide="globe" style="width: 18px;"></i> www.thinkagentic.ca
+              </a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h5>Platform</h5>
+            <ul class="footer-links">
+              <li><a href="#use-cases">Success Stories</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Company</h5>
+            <ul class="footer-links">
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#team">Team</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Connect</h5>
+            <ul class="footer-links">
+              <li><a href="https://www.linkedin.com/company/think-agentic" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">GitHub</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>© 2026 Think Agentic. All rights reserved.</p>
+          <div style="display: flex; gap: 2rem;">
+            <a href="#" style="color: var(--text-gray); text-decoration: none;">Privacy Policy</a>
+            <a href="#" style="color: var(--text-gray); text-decoration: none;">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="floating-btn">
+      <a href="https://calendly.com/thinkagentic-support/30min" target="_blank" class="btn btn-primary">Book a Call</a>
+    </div>
+
+    <script>
+      // Floating Nodes
+      const nodesContainer = document.getElementById('nodes-container');
+      const nodeCount = 20;
+      for (let i = 0; i < nodeCount; i++) {
+        const node = document.createElement('div');
+        node.className = 'node';
+        node.style.left = `${Math.random() * 100}%`;
+        node.style.top = `${Math.random() * 100}%`;
+        node.style.animationDelay = `${Math.random() * 4}s`;
+        node.style.opacity = Math.random() * 0.5 + 0.2;
+        nodesContainer.appendChild(node);
+      }
+
+      // Rotating Industry Text
+      const industries = [
+        "Financial Services",
+        "Insurance",
+        "Retail",
+        "Utility",
+        "Education",
+        "Tech",
+        "Healthcare",
+        "Government",
+        "Consulting",
+        "FMCG"
+      ];
+      let industryIndex = 0;
+      const industryElement = document.getElementById('rotating-industry');
+
+      if (industryElement) {
+        setInterval(() => {
+          industryElement.style.opacity = 0;
+          industryElement.style.transform = 'translateY(-20px) rotateX(90deg)';
+          
+          setTimeout(() => {
+            industryIndex = (industryIndex + 1) % industries.length;
+            industryElement.innerText = industries[industryIndex];
+            
+            // Reset position for entry
+            industryElement.style.transform = 'translateY(20px) rotateX(-90deg)';
+            
+            // Trigger reflow
+            industryElement.offsetHeight;
+            
+            industryElement.style.opacity = 1;
+            industryElement.style.transform = 'translateY(0) rotateX(0deg)';
+          }, 400);
+        }, 3500);
+      }
+
+      // Initialize Lucide icons
+      lucide.createIcons();
+
+      // Side Drawer Menu Logic
+      const menuToggle = document.getElementById('menu-toggle');
+      const sideDrawer = document.getElementById('side-drawer');
+      const drawerBackdrop = document.getElementById('drawer-backdrop');
+      const drawerLinks = document.querySelectorAll('.drawer-link');
+
+      if (menuToggle && sideDrawer && drawerBackdrop) {
+        const toggleMenu = () => {
+          menuToggle.classList.toggle('active');
+          sideDrawer.classList.toggle('active');
+          drawerBackdrop.classList.toggle('active');
+          
+          if (sideDrawer.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+          } else {
+            document.body.style.overflow = '';
+          }
+        };
+
+        menuToggle.addEventListener('click', toggleMenu);
+        drawerBackdrop.addEventListener('click', toggleMenu);
+
+        drawerLinks.forEach(link => {
+          link.addEventListener('click', toggleMenu);
+        });
+      }
+
+      // Custom Dropdown Logic
+      const selectDisplay = document.querySelector('.custom-select-display');
+      const selectOptions = document.querySelector('.custom-select-options');
+      const hiddenInput = document.getElementById('interest-input');
+      const selectedText = document.querySelector('.selected-text');
+      const options = document.querySelectorAll('.custom-option');
+
+      if (selectDisplay) {
+        selectDisplay.addEventListener('click', () => {
+          selectOptions.classList.toggle('open');
+          selectDisplay.style.borderColor = selectOptions.classList.contains('open') ? 'var(--accent)' : 'var(--border)';
+        });
+
+        options.forEach(option => {
+          option.addEventListener('click', () => {
+            selectedText.textContent = option.textContent;
+            selectedText.style.color = 'white';
+            hiddenInput.value = option.dataset.value;
+            selectOptions.classList.remove('open');
+            selectDisplay.style.borderColor = 'var(--border)';
+          });
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!selectDisplay.contains(e.target) && !selectOptions.contains(e.target)) {
+            selectOptions.classList.remove('open');
+            selectDisplay.style.borderColor = 'var(--border)';
+          }
+        });
+      }
+
+      // Scroll Progress Bar
+      window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('progress-bar').style.width = scrolled + '%';
+        
+        // Navbar scroll effect
+        const nav = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+
+      // Counter Animation
+      const counters = document.querySelectorAll('.counter');
+      const speed = 200;
+
+      const animateCounter = (counter) => {
+        const target = +counter.getAttribute('data-target');
+        let count = 0;
+        const increment = target / speed;
+
+        const updateCount = () => {
+          if (count < target) {
+            count += increment;
+            counter.innerText = Math.ceil(count) + (target === 95 ? '%' : target === 10 ? 'x' : target === 50 ? 'K+' : '+');
+            setTimeout(updateCount, 1);
+          } else {
+            counter.innerText = target + (target === 95 ? '%' : target === 10 ? 'x' : target === 50 ? 'K+' : '+');
+          }
+        };
+        updateCount();
+      };
+
+      // Intersection Observer for Counters
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      counters.forEach(counter => counterObserver.observe(counter));
+
+      // Impact Counters on Hover
+      const impactCards = document.querySelectorAll('#use-cases .feature-card');
+      impactCards.forEach(card => {
+        const counterEl = card.querySelector('.impact-counter');
+        if (counterEl) {
+          const target = +counterEl.getAttribute('data-target');
+          const suffix = counterEl.getAttribute('data-suffix');
+          
+          card.addEventListener('mouseenter', () => {
+            let count = 0;
+            const impactSpeed = 30; // Faster animation for hover
+            const increment = target / impactSpeed;
+            
+            const updateImpactCount = () => {
+              if (count < target) {
+                count += increment;
+                counterEl.innerText = Math.ceil(count) + suffix;
+                requestAnimationFrame(updateImpactCount);
+              } else {
+                counterEl.innerText = target + suffix;
+              }
+            };
+            updateImpactCount();
+          });
+        }
+      });
+
+      // Parallax Effect for Hero Graphic
+      window.addEventListener('mousemove', (e) => {
+        const graphic = document.querySelector('.hero-graphic');
+        if (graphic) {
+          const x = (window.innerWidth / 2 - e.pageX) / 30;
+          const y = (window.innerHeight / 2 - e.pageY) / 30;
+          graphic.style.transform = `translate(${x}px, ${y}px)`;
+        }
+      });
+
+      // Reveal on Scroll
+      const reveal = () => {
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach(el => {
+          const windowHeight = window.innerHeight;
+          const elementTop = el.getBoundingClientRect().top;
+          const elementVisible = 150;
+          if (elementTop < windowHeight - elementVisible) {
+            el.classList.add('active');
+          }
+        });
+      };
+      window.addEventListener('scroll', reveal);
+      reveal(); // Initial check
+
+      // Smooth Scroll
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          e.preventDefault();
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Simple Chat Demo Interaction
+      const chatInput = document.querySelector('.chat-input');
+      const chatBody = document.querySelector('.chat-body');
+      const sendBtn = document.querySelector('.chat-footer button');
+
+      const knowledgeBase = [
+        {
+          keywords: ["what", "do you do", "offer"],
+          response: "Think Agentic builds bespoke AI Agents, Power Platform solutions, and end-to-end workflow automations for enterprises. We turn complex operations into systems that run themselves."
+        },
+        {
+          keywords: ["who", "team", "founders", "about"],
+          response: "We are a team of enterprise automation experts. Our founders include Haseeb (Agentic AI & Power Platform Architect), Hammad (Data Governance & Security Specialist), and Hassan (Strategy & Research Specialist)."
+        },
+        {
+          keywords: ["contact", "email", "reach", "support"],
+          response: "You can reach us at support@thinkagentic.ca or by filling out the contact form on this page."
+        },
+        {
+          keywords: ["services", "practice", "solutions"],
+          response: "Our practice areas include Agentic AI Solutions, Microsoft Power Platform, and RPA/Workflow Automation."
+        },
+        {
+          keywords: ["use case", "example", "impact", "stories", "story", "portfolio"],
+          response: "We have delivered high-impact solutions including RFP Automation (70% savings), Teams-integrated Knowledge Agents, and Massive Document Intelligence processing 10,000+ pages."
+        },
+        {
+          keywords: ["why", "philosophy", "different"],
+          response: "We believe real intelligence is not reactive: it plans and reasons. Our technology genuinely thinks and acts, providing a partner that works while you sleep."
+        },
+        {
+          keywords: ["price", "pricing", "cost", "model", "engagement"],
+          response: "We offer Project-based, Retainer, and Advisory engagement models tailored to your organization's needs."
+        },
+        {
+          keywords: ["call", "book", "setup", "meet", "schedule", "demo", "talk", "appointment"],
+          response: "I'd love to get a call scheduled! You can book a free discovery call directly using this link: https://calendly.com/thinkagentic-support/30min"
+        }
+      ];
+
+      const getResponse = (query) => {
+        query = query.toLowerCase();
+        for (const item of knowledgeBase) {
+          if (item.keywords.some(kw => query.includes(kw))) {
+            return item.response;
+          }
+        }
+        return "That's a great question! I'd love to discuss that in more detail during a discovery call. You can book a time here: https://calendly.com/thinkagentic-support/30min";
+      };
+
+      const addMessage = (text, isAi = false) => {
+        const bubble = document.createElement('div');
+        bubble.className = `chat-bubble ${isAi ? 'bubble-ai' : ''}`;
+        if (!isAi) {
+          bubble.style.background = 'var(--accent)';
+          bubble.style.alignSelf = 'flex-end';
+          bubble.style.borderBottomRightRadius = '0.25rem';
+          bubble.textContent = text;
+          chatBody.appendChild(bubble);
+        } else {
+          bubble.textContent = '';
+          chatBody.appendChild(bubble);
+          let i = 0;
+          const type = () => {
+            if (i < text.length) {
+              bubble.textContent += text.charAt(i);
+              i++;
+              chatBody.scrollTop = chatBody.scrollHeight;
+              setTimeout(type, 20);
+            } else {
+              // Convert URLs to clickable links after typing finishes
+              bubble.innerHTML = bubble.innerHTML.replace(
+                /(https?:\/\/[^\s]+)/g, 
+                '<a href="$1" target="_blank" style="color: var(--accent); text-decoration: underline;">$1</a>'
+              );
+            }
+          };
+          type();
+        }
+        chatBody.scrollTop = chatBody.scrollHeight;
+      };
+
+      const handleSend = () => {
+        const text = chatInput.value.trim();
+        if (text) {
+          addMessage(text);
+          chatInput.value = '';
+          setTimeout(() => {
+            const response = getResponse(text);
+            addMessage(response, true);
+          }, 800);
+        }
+      };
+
+      sendBtn.addEventListener('click', handleSend);
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleSend();
+      });
+
+      // Contact Form Submission
+      const contactForm = document.getElementById('contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          const submitBtn = this.querySelector('button[type="submit"]');
+          const originalText = submitBtn.innerText;
+          submitBtn.innerText = 'Sending Inquiry...';
+          submitBtn.disabled = true;
+
+          const formData = new FormData(this);
+          const name = formData.get('name');
+          const email = formData.get('email');
+          const phone = formData.get('phone') || 'Not provided';
+          const interest = formData.get('interest');
+          const message = formData.get('message');
+
+          // Construct the payload for Web3Forms
+          const payload = {
+            // IMPORTANT: Replace this with your actual Web3Forms access key from https://web3forms.com/
+            access_key: "573f1147-ce7c-4464-98f9-bbfd98aa9f17", 
+            subject: `${name} - ${interest}`,
+            from_name: name,
+            replyto: email,
+            message: `Full Name: ${name}\nEmail: ${email}\nPhone Number: ${phone}\nArea of Interest: ${interest}\nTell us about your project or inquiry:\n${message}`
+          };
+
+          try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+            
+            if (response.status === 200) {
+              submitBtn.innerText = 'Inquiry Sent Successfully!';
+              this.reset();
+            } else {
+              console.error(result);
+              submitBtn.innerText = 'Error sending inquiry';
+            }
+          } catch (error) {
+            console.error(error);
+            submitBtn.innerText = 'Error sending inquiry';
+          } finally {
+            setTimeout(() => {
+              submitBtn.innerText = originalText;
+              submitBtn.disabled = false;
+            }, 4000);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
+
