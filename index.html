@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=980" />
     <title>Think Agentic | Agentic Intelligence & Autonomous Systems</title>
     <meta name="description" content="Think Agentic builds autonomous AI agents and enterprise automation systems that think, reason, and act.">
     <meta property="og:title" content="Think Agentic | Agentic Intelligence">
@@ -127,8 +127,10 @@
         color: var(--text-white);
         font-family: var(--font-sans);
         line-height: 1.6;
-        overflow-x: hidden;
+        overflow-x: auto;
         -webkit-font-smoothing: antialiased;
+        min-width: 1400px;
+        zoom: 0.85;
       }
 
       /* Scroll Progress Bar */
@@ -179,6 +181,7 @@
         top: 0;
         left: 0;
         width: 100%;
+        min-width: 1400px;
         z-index: 1000;
         padding: 1rem 0;
         transition: all 0.3s ease;
@@ -1488,45 +1491,6 @@
       .reveal.active {
         opacity: 1;
         transform: translateY(0);
-      }
-
-      /* Mobile Responsive Settings */
-      @media (max-width: 1200px) {
-        .container { padding: 0 1.5rem; }
-        .hero h1 { font-size: 4rem; }
-      }
-
-      @media (max-width: 1024px) {
-        html { font-size: 14px; }
-        .hero h1 { font-size: 3.5rem; }
-        .feature-grid, .stats-grid, .team-grid { grid-template-columns: repeat(2, 1fr); }
-        .service-block { gap: 3rem; }
-        .pricing-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-        .side-drawer { width: 300px; }
-      }
-
-      @media (max-width: 768px) {
-        html { font-size: 12px; }
-        .nav-links { display: none; }
-        .hero { padding-top: 6rem; padding-bottom: 3rem; text-align: center; }
-        .hero-content { margin: 0 auto; }
-        .hero-graphic { display: none; }
-        .hero h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; }
-        .hero p { font-size: 1.15rem; }
-        .hero .btn-group { justify-content: center; }
-        .feature-grid, .team-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-        .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-        .process-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-        .process-grid::before { display: none; }
-        .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-        .contact-container { grid-template-columns: 1fr; gap: 3rem; }
-        .floating-btn { display: block; bottom: 1.5rem; right: 1.5rem; padding: 0.8rem 1.5rem; }
-        section { padding: 3rem 0; }
-        .platform-features { grid-template-columns: 1fr; }
-        
-        /* Prevent text cut offs */
-        .hero h1, h2, h3, h4, p { word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; }
-        .btn-group { flex-wrap: wrap; }
       }
     </style>
   </head>
