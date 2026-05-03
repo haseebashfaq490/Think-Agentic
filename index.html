@@ -2,12 +2,12 @@
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=980" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Think Agentic | Agentic Intelligence & Autonomous Systems</title>
     <meta name="description" content="Think Agentic builds autonomous AI agents and enterprise automation systems that think, reason, and act.">
     <meta property="og:title" content="Think Agentic | Agentic Intelligence">
     <meta property="og:description" content="Engineering the agentic future for your business through autonomous, reasoning AI systems.">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M20 50C20 33.4315 33.4315 20 50 20C66.5685 20 80 33.4315 80 50C80 66.5685 66.5685 80 50 80' stroke='%2310b981' stroke-width='4' stroke-linecap='round' /><circle cx='50' cy='50' r='10' fill='%2310b981' /><path d='M50 20V10M80 50H90M50 80V90M20 50H10' stroke='%2310b981' stroke-width='2' stroke-linecap='round' opacity='0.5' /><path d='M50 50L75 25' stroke='%2310b981' stroke-width='2' stroke-dasharray='4 4' /><circle cx='75' cy='25' r='4' fill='white' /></svg>">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -127,10 +127,8 @@
         color: var(--text-white);
         font-family: var(--font-sans);
         line-height: 1.6;
-        overflow-x: auto;
+        overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
-        min-width: 1400px;
-        zoom: 0.85;
       }
 
       /* Scroll Progress Bar */
@@ -181,7 +179,6 @@
         top: 0;
         left: 0;
         width: 100%;
-        min-width: 1400px;
         z-index: 1000;
         padding: 1rem 0;
         transition: all 0.3s ease;
@@ -1491,6 +1488,39 @@
       .reveal.active {
         opacity: 1;
         transform: translateY(0);
+      }
+
+      /* Mobile Responsive Settings */
+      @media (max-width: 1200px) {
+        .container { padding: 0 1.5rem; }
+        .hero h1 { font-size: 4rem; }
+      }
+
+      @media (max-width: 1024px) {
+        .hero h1 { font-size: 3.5rem; }
+        .feature-grid, .stats-grid, .team-grid { grid-template-columns: repeat(2, 1fr); }
+        .service-block { grid-template-columns: 1fr; gap: 3rem; }
+        .service-block:nth-child(even) { direction: ltr; }
+        .pricing-grid { grid-template-columns: 1fr; gap: 2rem; }
+        .contact-container { grid-template-columns: 1fr; gap: 3rem; }
+        .side-drawer { width: 300px; }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links { display: none; }
+        .hero { padding-top: 6rem; padding-bottom: 3rem; text-align: center; }
+        .hero-content { margin: 0 auto; }
+        .hero-graphic { display: none; }
+        .hero h1 { font-size: 2.75rem; }
+        .hero p { font-size: 1.1rem; }
+        .hero .btn-group { justify-content: center; flex-wrap: wrap; }
+        .feature-grid, .stats-grid, .process-grid, .team-grid { grid-template-columns: 1fr; }
+        .process-grid::before { display: none; }
+        .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+        .floating-btn { display: block; bottom: 1.5rem; right: 1.5rem; padding: 0.8rem 1.5rem; }
+        .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+        section { padding: 3rem 0; }
+        .platform-features { grid-template-columns: 1fr; }
       }
     </style>
   </head>
