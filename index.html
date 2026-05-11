@@ -1549,15 +1549,21 @@
         
         section { padding: 4rem 0; }
         .hero { padding-top: 8rem; padding-bottom: 4rem; }
-        .hero h1 { font-size: 3rem; line-height: 1.1; }
-        .hero .subheadline { font-size: 1.15rem; }
-        .hero p { font-size: 1rem; }
+        .hero h1 { font-size: 2.5rem !important; line-height: 1.1; }
+        .hero .subheadline { font-size: 1rem; }
+        .hero p { font-size: 0.95rem; }
         
         .hero-actions { flex-direction: column; width: 100%; gap: 1rem; }
         .hero-actions .btn { width: 100%; text-align: center; justify-content: center; }
         
         .impact-grid, .feature-grid, .pricing-grid, .team-grid, [style*="minmax"] { grid-template-columns: 1fr !important; }
-        h2 { font-size: 2.5rem; line-height: 1.1; }
+        h2, [style*="font-size: 3.5rem"] { font-size: 2rem !important; line-height: 1.1; }
+        h3, [style*="font-size: 3rem"], [style*="font-size: 2.5rem"] { font-size: 1.75rem !important; line-height: 1.2; }
+        h4, [style*="font-size: 2rem"] { font-size: 1.5rem !important; line-height: 1.2; }
+        [style*="font-size: 1.5rem"] { font-size: 1.25rem !important; }
+        [style*="font-size: 1.25rem"], [style*="font-size: 1.35rem"] { font-size: 1.1rem !important; }
+        [style*="font-size: 1.15rem"] { font-size: 1rem !important; }
+        p { font-size: 0.95rem !important; }
         
         .agile-loop-container { flex-direction: column; }
         .agile-visual { margin-bottom: 2rem; transform: scale(0.8); }
@@ -1566,15 +1572,18 @@
         .footer-col { display: flex; flex-direction: column; align-items: center; }
         .footer-links { align-items: center; justify-content: center; }
         
-        .stats-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-        
-        h3 { font-size: 1.5rem; line-height: 1.2; }
+        .stats-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .stats-grid > div > div { padding: 1.5rem 1rem; }
       }
       
       @media (max-width: 480px) {
-        .hero h1 { font-size: 2.25rem; }
+        .hero h1 { font-size: 2rem !important; }
         .stats-grid { grid-template-columns: 1fr; }
-        .container { padding: 0 1rem; }
+        .container { padding: 0 1.25rem; }
+        [style*="padding: 3rem"], [style*="padding: 4rem"] { padding: 1.5rem !important; }
+        [style*="padding: 2rem"] { padding: 1.25rem !important; }
+        [style*="gap: 4rem"] { gap: 2rem !important; }
+        [style*="gap: 2rem"] { gap: 1rem !important; }
       }
     </style>
   </head>
