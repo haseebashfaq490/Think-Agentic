@@ -1293,7 +1293,7 @@
         display: flex;
         gap: 2rem;
         width: max-content;
-        animation: scroll-marquee 40s linear infinite;
+        animation: scroll-marquee 15s linear infinite;
       }
 
       .reviews-marquee:hover {
@@ -1303,6 +1303,11 @@
       @keyframes scroll-marquee {
         0% { transform: translateX(0); }
         100% { transform: translateX(calc(-50% - 1rem)); }
+      }
+      
+      /* Fix for navigation covering top content on other tabs */
+      .tab-content:not(#tab-home) > section:first-of-type {
+        padding-top: 8rem !important;
       }
 
       .review-card {
@@ -1965,6 +1970,60 @@
                   <div class="author-info">
                     <h4>Michael T.</h4>
                     <span>Operations Director</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card" aria-hidden="true">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="review-text">"We used to spend hours every week extracting information from forms. Now, the system does it automatically and feeds it to our ERP. Our error rate dropped to almost zero."</p>
+                <div class="review-author">
+                  <div class="author-avatar">S</div>
+                  <div class="author-info">
+                    <h4>Sarah K.</h4>
+                    <span>Supply Chain Manager</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card" aria-hidden="true">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="review-text">"The multi-agent orchestration they built for our QA process is incredible. It automatically parses engineering specs, generates test cases, and flags inconsistencies. Saved us hundreds of hours."</p>
+                <div class="review-author">
+                  <div class="author-avatar">D</div>
+                  <div class="author-info">
+                    <h4>David R.</h4>
+                    <span>VP Engineering</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card" aria-hidden="true">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24"><path fill="#fbbc04" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="review-text">"As an accounting firm, accuracy is everything. Think Agentic built a secure, SOC2-compliant agent that reconciles invoices across three different platforms. It's like having a tireless junior accountant."</p>
+                <div class="review-author">
+                  <div class="author-avatar">E</div>
+                  <div class="author-info">
+                    <h4>Emily W.</h4>
+                    <span>Managing Partner</span>
                   </div>
                 </div>
               </div>
@@ -3288,7 +3347,7 @@
 
       // Tab Switching Logic
       const setupTabs = () => {
-        const tabLinks = document.querySelectorAll('.nav-links a[href^="#tab-"], .drawer-link[href^="#tab-"]');
+        const tabLinks = document.querySelectorAll('.nav-links a[href^="#tab-"], .drawer-link[href^="#tab-"], .footer-links a[href^="#tab-"]');
         const tabContents = document.querySelectorAll('.tab-content');
 
         const switchTab = (targetId) => {
