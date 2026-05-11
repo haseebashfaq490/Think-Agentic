@@ -1685,8 +1685,8 @@
             <p class="reveal">We build the technology that reasons and executes while you sleep, giving you the freedom to focus on what matters most. Think Agentic turns complex operations into systems that run themselves.</p>
             
             <div class="hero-actions reveal">
-              <a href="#tab-contact" class="btn btn-primary">Start Building</a>
-              <a href="#tab-cases" class="btn btn-secondary">View Our Work</a>
+              <a href="#tab-contact" data-scroll-to="contact" class="btn btn-primary">Start Building</a>
+              <a href="#proven-impact" class="btn btn-secondary" onclick="document.getElementById('proven-impact').scrollIntoView({behavior: 'smooth'})">View Our Work</a>
             </div>
             
             <p class="trust-line reveal" style="font-size: 1.1rem; opacity: 0.9; display: flex; align-items: center; gap: 0.75rem; justify-content: center;">
@@ -1865,7 +1865,7 @@
             </div>
           </div>
           <div style="text-align: center; margin-top: 4rem;" class="reveal">
-            <a href="#tab-contact" class="btn btn-primary">Get Started</a>
+            <a href="#tab-contact" data-scroll-to="contact" class="btn btn-primary">Get Started</a>
             <p style="margin-top: 1rem; font-size: 0.875rem;">No credit card required for consultation.</p>
           </div>
         </div>
@@ -2921,6 +2921,48 @@
         </section>
       </div> <!-- end tab-team -->
 
+      <!-- Privacy Policy Tab -->
+      <div id="tab-privacy" class="tab-content" style="display: none;">
+        <section style="background: var(--bg-alt); padding: 8rem 0; min-height: 100vh;">
+          <div class="container">
+            <div class="section-header reveal" style="text-align: left; max-width: 900px; margin: 0 auto 5rem;">
+              <h2>Privacy <span class="text-gradient">Policy.</span></h2>
+              <p style="text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); font-weight: 700; margin-top: 1rem;">Effective Date: May 11, 2026</p>
+            </div>
+            
+            <div class="privacy-content reveal" style="max-width: 900px; margin: 0 auto; color: var(--text-gray); font-size: 1.1rem; line-height: 1.8;">
+              <div style="background: rgba(15, 23, 42, 0.4); border: 1px solid var(--border); padding: 3rem; border-radius: 1.5rem; margin-bottom: 3rem;">
+                <h3 style="color: white; font-size: 1.75rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                  <i data-lucide="shield-check" style="color: var(--accent); width: 32px; height: 32px;"></i>
+                  Your Data is Yours. Period.
+                </h3>
+                <p>At Think Agentic, we build systems that process your most sensitive internal data. We believe that true enterprise automation requires absolute trust and zero compromises on data sovereignty. <strong>We do not, and will never, share your data with third parties, sell your data, or use your proprietary enterprise data to train our foundational models.</strong></p>
+              </div>
+
+              <h4 style="color: white; font-size: 1.35rem; margin-top: 3rem; margin-bottom: 1rem;">1. Zero-Retention Architecture</h4>
+              <p>Depending on the deployment model you select (VPC / On-Prem / Managed SaaS), our agents are designed with a zero-retention philosophy for active processing. Once an agent extracts, translates, and routes insight to your authorized systems, the specific conversational context is instantly flushed from our processing layers, unless you explicitly request a persistent memory cluster.</p>
+
+              <h4 style="color: white; font-size: 1.35rem; margin-top: 3rem; margin-bottom: 1rem;">2. No Model Training on Your Data</h4>
+              <p>We believe your intellectual property gives you a competitive advantage, and it should stay that way. The data processed through our Agentic platforms is explicitly opted out of any data sharing with underlying LLM providers (including OpenAI, Google, Anthropic, or proprietary Think Agentic models). Your documents, chat histories, emails, and database queries are strictly used for your real-time processing needs and nothing else.</p>
+
+              <h4 style="color: white; font-size: 1.35rem; margin-top: 3rem; margin-bottom: 1rem;">3. Data Storage and Security (SOC 2 Aligned)</h4>
+              <p>For systems that require persistent operational memory (such as our Autonomous RAG capabilities or Historical Support Copilots), your data is stored in isolated, single-tenant encrypted databases. All data is encrypted at rest (AES-256) and in transit (TLS 1.3). We leverage secure IAM policies to ensure that even our own engineers cannot access your raw data payloads.</p>
+
+              <h4 style="color: white; font-size: 1.35rem; margin-top: 3rem; margin-bottom: 1rem;">4. PII and Compliance</h4>
+              <p>Our intelligent document parsing automatically detects and redacts Personally Identifiable Information (PII) before it reaches the language processing layers, minimizing compliance risk under GDPR, CCPA, and HIPAA. We work strictly within the boundaries of international data sovereignty laws.</p>
+              
+              <h4 style="color: white; font-size: 1.35rem; margin-top: 3rem; margin-bottom: 1rem;">5. Third-Party Integrations</h4>
+              <p>Our agents connect to your tools via authenticated OAuth or dedicated API keys. We never store long-lived credentials without secure vaulting. You retain the ability to instantly revoke agent access directly from your own administrative panels at any time.</p>
+
+              <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+                <p>For detailed inquiries regarding our security posture, deployment compliance matrices, or to request a Data Processing Agreement (DPA), please contact our team.</p>
+                <a href="#tab-contact" data-scroll-to="contact" class="btn btn-primary" style="margin-top: 2rem;">Contact our team</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div> <!-- end tab-privacy -->
+
       <!-- Contact Tab -->
       <div id="tab-contact" class="tab-content" style="display: none;">
       
@@ -2956,7 +2998,7 @@
                 <li><i data-lucide="check"></i> Continuous optimization</li>
                 <li><i data-lucide="check"></i> Dedicated architect</li>
               </ul>
-              <a href="#tab-contact" class="btn btn-primary" style="margin-top: auto;">Get Started</a>
+              <a href="#tab-contact" data-scroll-to="contact" class="btn btn-primary" style="margin-top: auto;">Get Started</a>
             </div>
             
             <div class="pricing-card reveal">
@@ -3116,8 +3158,7 @@
         <div class="footer-bottom">
           <p>© 2026 Think Agentic. All rights reserved.</p>
           <div style="display: flex; gap: 2rem;">
-            <a href="#" style="color: var(--text-gray); text-decoration: none;">Privacy Policy</a>
-            <a href="#" style="color: var(--text-gray); text-decoration: none;">Terms of Service</a>
+            <a href="#tab-privacy" style="color: var(--text-gray); text-decoration: none;">Privacy Policy</a>
           </div>
         </div>
       </div>
@@ -3347,10 +3388,10 @@
 
       // Tab Switching Logic
       const setupTabs = () => {
-        const tabLinks = document.querySelectorAll('.nav-links a[href^="#tab-"], .drawer-link[href^="#tab-"], .footer-links a[href^="#tab-"]');
+        const tabLinks = document.querySelectorAll('a[href^="#tab-"]');
         const tabContents = document.querySelectorAll('.tab-content');
 
-        const switchTab = (targetId) => {
+        const switchTab = (targetId, scrollToId = null) => {
           tabContents.forEach(content => {
             content.style.display = 'none';
             content.classList.remove('active-tab-content');
@@ -3359,7 +3400,16 @@
           if (targetTab) {
             targetTab.style.display = 'block';
             targetTab.classList.add('active-tab-content');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (scrollToId) {
+                const el = document.getElementById(scrollToId);
+                if (el) {
+                    setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 10);
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
           }
           
           tabLinks.forEach(link => {
@@ -3379,7 +3429,8 @@
             const targetId = link.getAttribute('href');
             if (targetId && targetId.startsWith('#tab-')) {
                 e.preventDefault();
-                switchTab(targetId);
+                const scrollToId = link.getAttribute('data-scroll-to');
+                switchTab(targetId, scrollToId);
             }
           });
         });
