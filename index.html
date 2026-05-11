@@ -7,7 +7,7 @@
     <meta name="description" content="Think Agentic builds autonomous AI agents and enterprise automation systems that think, reason, and act.">
     <meta property="og:title" content="Think Agentic | Agentic Intelligence">
     <meta property="og:description" content="Engineering the agentic future for your business through autonomous, reasoning AI systems.">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -3197,20 +3197,24 @@
 
       // Counter Animation
       const counters = document.querySelectorAll('.counter');
-      const speed = 200;
 
       const animateCounter = (counter) => {
+        if (counter._reqFrameId) {
+          cancelAnimationFrame(counter._reqFrameId);
+        }
         const target = +counter.getAttribute('data-target');
         let count = 0;
+        const speed = 30; // Faster animation
         const increment = target / speed;
 
         const updateCount = () => {
           if (count < target) {
             count += increment;
             counter.innerText = Math.ceil(count) + (counter.getAttribute('data-suffix') || '');
-            setTimeout(updateCount, 1);
+            counter._reqFrameId = requestAnimationFrame(updateCount);
           } else {
             counter.innerText = target + (counter.getAttribute('data-suffix') || '');
+            counter._reqFrameId = null;
           }
         };
         updateCount();
@@ -3228,6 +3232,17 @@
 
       counters.forEach(counter => counterObserver.observe(counter));
 
+      // Stats Counters on Hover
+      const statItems = document.querySelectorAll('.stat-item');
+      statItems.forEach(item => {
+        const counterEl = item.querySelector('.counter');
+        if (counterEl) {
+          item.addEventListener('mouseenter', () => {
+            animateCounter(counterEl);
+          });
+        }
+      });
+
       
       // Impact Counters on Hover
       const impactCards = document.querySelectorAll('#proven-impact .impact-card');
@@ -3238,6 +3253,7 @@
           const suffix = counterEl.getAttribute('data-suffix');
           
           card.addEventListener('mouseenter', () => {
+            if (counterEl._reqFrameId) cancelAnimationFrame(counterEl._reqFrameId);
             let count = 0;
             const impactSpeed = 30; // Faster animation for hover
             const increment = target / impactSpeed;
@@ -3246,9 +3262,10 @@
               if (count < target) {
                 count += increment;
                 counterEl.innerText = Math.ceil(count) + suffix;
-                requestAnimationFrame(updateImpactCount);
+                counterEl._reqFrameId = requestAnimationFrame(updateImpactCount);
               } else {
                 counterEl.innerText = target + suffix;
+                counterEl._reqFrameId = null;
               }
             };
             updateImpactCount();
