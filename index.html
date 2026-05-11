@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=980" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Think Agentic | Agentic Intelligence & Autonomous Systems</title>
     <meta name="description" content="Think Agentic builds autonomous AI agents and enterprise automation systems that think, reason, and act.">
     <meta property="og:title" content="Think Agentic | Agentic Intelligence">
@@ -128,10 +128,8 @@
         color: var(--text-white);
         font-family: var(--font-sans);
         line-height: 1.6;
-        overflow-x: auto;
+        overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
-        min-width: 1400px;
-        zoom: 0.85;
       }
 
       /* Dynamic Background Elements */
@@ -214,7 +212,6 @@
         top: 0;
         left: 0;
         width: 100%;
-        min-width: 1400px;
         z-index: 1000;
         padding: 1rem 0;
         transition: all 0.3s ease;
@@ -286,7 +283,8 @@
         position: fixed;
         top: 0;
         left: 0;
-        width: 350px;
+        width: 100%;
+        max-width: 350px;
         height: 100%;
         background: rgba(15, 23, 42, 0.95);
         backdrop-filter: blur(20px);
@@ -1319,7 +1317,8 @@
         transition: transform 0.3s ease, border-color 0.3s ease;
         display: flex;
         flex-direction: column;
-        width: 400px;
+        width: 85vw;
+        max-width: 400px;
         flex-shrink: 0;
       }
 
@@ -1557,7 +1556,7 @@
         .hero-actions { flex-direction: column; width: 100%; gap: 1rem; }
         .hero-actions .btn { width: 100%; text-align: center; justify-content: center; }
         
-        .feature-grid, .pricing-grid, .team-grid { grid-template-columns: 1fr; }
+        .impact-grid, .feature-grid, .pricing-grid, .team-grid, [style*="minmax"] { grid-template-columns: 1fr !important; }
         h2 { font-size: 2.5rem; line-height: 1.1; }
         
         .agile-loop-container { flex-direction: column; }
@@ -1661,12 +1660,12 @@
     <div class="drawer-backdrop" id="drawer-backdrop"></div>
     <div class="side-drawer" id="side-drawer">
       <div class="drawer-content">
-        <a href="#tab-home" class="drawer-link" onclick="document.getElementById('menu-toggle').click()">Home</a>
-        <a href="#tab-services" class="drawer-link" onclick="document.getElementById('menu-toggle').click()">Services</a>
-        <a href="#tab-cases" class="drawer-link" onclick="document.getElementById('menu-toggle').click()">Business Cases</a>
-        <a href="#tab-about" class="drawer-link" onclick="document.getElementById('menu-toggle').click()">About</a>
-        <a href="#tab-team" class="drawer-link" onclick="document.getElementById('menu-toggle').click()">Team</a>
-        <a href="#tab-contact" class="drawer-link" onclick="document.getElementById('menu-toggle').click()">Contact</a>
+        <a href="#tab-home" class="drawer-link">Home</a>
+        <a href="#tab-services" class="drawer-link">Services</a>
+        <a href="#tab-cases" class="drawer-link">Business Cases</a>
+        <a href="#tab-about" class="drawer-link">About</a>
+        <a href="#tab-team" class="drawer-link">Team</a>
+        <a href="#tab-contact" class="drawer-link">Contact</a>
       </div>
     </div>
 
