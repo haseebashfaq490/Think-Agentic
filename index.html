@@ -346,6 +346,7 @@
       .side-drawer.active .drawer-link:nth-child(4) { transition-delay: 0.25s; }
       .side-drawer.active .drawer-link:nth-child(5) { transition-delay: 0.3s; }
       .side-drawer.active .drawer-link:nth-child(6) { transition-delay: 0.35s; }
+      .side-drawer.active .drawer-link:nth-child(7) { transition-delay: 0.4s; }
 
       .drawer-link:hover,
       .drawer-link.active {
@@ -1670,6 +1671,7 @@
           <a href="#tab-about">About</a>
           <a href="#tab-team">Team</a>
           <a href="#tab-contact">Contact</a>
+          <a href="#tab-lab">Lab</a>
           <a href="https://calendly.com/thinkagentic-support/30min" target="_blank" class="btn btn-primary" style="padding: 0.6rem 1.25rem; font-size: 0.9rem; box-shadow: 0 0 25px var(--accent-glow);">Book a Call</a>
         </div>
       </div>
@@ -1685,6 +1687,7 @@
         <a href="#tab-about" class="drawer-link">About</a>
         <a href="#tab-team" class="drawer-link">Team</a>
         <a href="#tab-contact" class="drawer-link">Contact</a>
+        <a href="#tab-lab" class="drawer-link">Lab</a>
       </div>
     </div>
 
@@ -3116,6 +3119,15 @@
         </div>
       </section>
       </div> <!-- end tab-contact -->
+
+      <!-- Lab Tab -->
+      <div id="tab-lab" class="tab-content" style="display: none;">
+        <section style="padding: 120px 2.5vw 4rem; height: 200vh; display: flex; flex-direction: column; background: var(--bg);">
+          <div style="width: 100%; height: 100%; margin: 0 auto; border-radius: 1.5rem; overflow: hidden; border: 1px solid #1e293b; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); background: #0e1117;">
+            <iframe src="https://thinkagentic-lab.streamlit.app/?embed=true&theme=dark" style="width: 100%; height: 100%; border: none; display: block; background: #0e1117;"></iframe>
+          </div>
+        </section>
+      </div> <!-- end tab-lab -->
     </main>
 
     <!-- Footer -->
